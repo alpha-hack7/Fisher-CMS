@@ -1,0 +1,19 @@
+.make-post {
+  margin-top: 1rem;
+}
+.make-post form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.make-post form select {
+  width: fit-content;
+}
+.make-post form div {
+  display: flex;
+  flex-direction: column;
+}
+.make-post form button {
+  width: fit-content;
+}

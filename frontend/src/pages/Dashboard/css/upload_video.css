@@ -1,0 +1,28 @@
+.upload-video {
+  margin: 1rem auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: var(--secondary);
+}
+.upload-video form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+.upload-video form select {
+  width: fit-content;
+}
+.upload-video form div {
+  display: flex;
+  flex-direction: column;
+}
+.upload-video form input[type="file"] {
+  background-color: var(--primary);
+  width: fit-content;
+  border-radius: 10px;
+}
+.upload-video form button {
+  width: fit-content;
+}
