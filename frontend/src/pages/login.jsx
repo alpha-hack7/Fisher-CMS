@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { loginUser } from "../api/login";
 import "../css/login.css";
 import Loader from "../sections/components/loader";
-
-import loginUser from "../api/login";
 const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ username: "", password: "" });
@@ -20,8 +20,12 @@ const Login = () => {
     setLoading(true);
     try {
       await loginUser(user);
+      toast.success("Logged In Successfully!");
+      navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      toast.error(error || "Something wrong happened");
+    } finally {
+      setLoading(false);
     }
   };
   if (loading) return <Loader />;

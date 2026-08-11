@@ -46,3 +46,32 @@
   opacity: 1;
   transform: translateY(-50%);
 }
+.sidebar section {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar .logout {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+.sidebar .logout .tag {
+  position: absolute;
+  background-color: var(--tag);
+  color: var(--text);
+  border: 1px solid var(--border);
+  left: 100%;
+  top: 50%;
+  opacity: 0;
+  padding: 0.25rem 0.5rem;
+}
+.sidebar .logout:hover .tag {
+  opacity: 1;
+  transform: translateY(-50%);
+}
