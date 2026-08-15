@@ -10,21 +10,37 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from datetime import timedelta
 from pathlib import Path
 
+import cloudinary
+import environ
+
+env = environ.Env(DEBUG=(bool, False))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+DEBUG = env("DEBUG")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-kkz4^9s575lw&cofnyd745qe8ukiua8oy3451q=f@y9tt64th-"
-
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME")
+CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY")
+CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET")
+
+cloudinary.config(
+    cloud_name=CLOUDINARY_CLOUD_NAME,
+    api_key=CLOUDINARY_API_KEY,
+    api_secret=CLOUDINARY_API_SECRET,
+)
 
 ALLOWED_HOSTS = []
 
@@ -55,6 +71,7 @@ INSTALLED_APPS = [
     "corsheaders",
     # local
     "account",
+    "content",
 ]
 
 MIDDLEWARE = [
@@ -116,9 +133,9 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "fisher_cms_db",
+        "NAME": env("DB_NAME"),
         "USER": "postgres",
-        "PASSWORD": "**1Alpha**",
+        "PASSWORD": env("DB_PASSWORD"),
         "HOST": "localhost",
         "PORT": "5432",
     }

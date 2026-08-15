@@ -1,12 +1,40 @@
-import { Category, New_Category } from "./constants";
+import { useRef, useState } from "react";
+import { toast } from "react-toastify";
+import Loader from "../../sections/components/loader";
+import { Category, New_Category, Upload_Video_Dialog } from "./constants";
 import "./css/upload_video.css";
 
 const Upload_video = () => {
-  const video = {
-    title: "Sample Video Title",
-    shortText: "This is a short text about the video.",
-    description: "This is a detailed description of the video.",
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [content, setContent] = useState({
+    title: "",
+    short_text: "",
+  });
+  const upload_video_ref = useRef(null);
+  const uploadVideo = () => {
+    setOpen(true);
+    upload_video_ref.current?.showModal();
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      toast.success("Video uploaded successfully");
+    } catch (error) {
+      toast.error(error || "Video upload failed");
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+  const handleChange = (e) => {
+    setContent((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  if (loading) return <Loader />;
   return (
     <article>
       <nav>Dashboard &gt; Videos &gt; Upload Video &gt;</nav>
@@ -15,15 +43,23 @@ const Upload_video = () => {
           <Category />
           <div>
             <label htmlFor="title">Title:</label>
-            <input type="text" name="title" id="title" />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={content.title}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <label htmlFor="short-text-about">Short Text (About):</label>
+            <label htmlFor="short_text">Short Text (About):</label>
             <textarea
-              name="short-text-about"
-              id="short-text-about"
+              name="short_text"
+              id="short_text"
               cols="30"
               rows="3"
+              value={content.short_text}
+              onChange={handleChange}
             ></textarea>
           </div>
           <div>
@@ -36,25 +72,19 @@ const Upload_video = () => {
             />
           </div>
           <New_Category />
-          <button type="submit">Upload Video</button>
+          <button type="button" disabled={loading} onClick={uploadVideo}>
+            {loading ? "Uploading" : "Upload Video"}
+          </button>
         </form>
-        <dialog id="upload-video">
-          <h3>Upload Video</h3>
-          <p>Are you sure you want to upload this video?</p>
-          <div>
-            <button type="submit">Yes, Upload</button>
-            <button type="button">No, Cancel</button>
-          </div>
-        </dialog>
-        <dialog id="delete-video">
-          <h3>{video.title}</h3>
-          <p>Confirm deletion of selected video.</p>
-          <div>
-            <button type="submit">Yes, Delete This</button>
-            <button type="button">No, Don't dare</button>
-          </div>
-        </dialog>
       </div>
+      {open && (
+        <Upload_Video_Dialog
+          title={"Upload Video Title"}
+          upload_ref={upload_video_ref}
+          onUpload={handleSubmit}
+          setOpen={setOpen}
+        />
+      )}
     </article>
   );
 };
