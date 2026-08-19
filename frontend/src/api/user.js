@@ -9,7 +9,10 @@ API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("access");
 
-    if (token) {
+    const isAuthRequest =
+      config.url?.includes("api/auth/login") ||
+      config.url?.includes("api/auth/token/refresh");
+    if (token && !isAuthRequest) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
@@ -44,10 +47,11 @@ API.interceptors.response.use(
         });
 
         const newAccessToken = response.data.access;
+        const newRefreshToken = response.data.refresh;
 
         // Save new access token
         localStorage.setItem("access", newAccessToken);
-
+        localStorage.setItem("refresh", newRefreshToken);
         // Add new token to original request
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 

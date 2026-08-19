@@ -1,20 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { Videos_Section } from "./drafts_page";
 const Videos_page = () => {
   const navigate = useNavigate();
   return (
     <div>
       <nav>Dashboard &gt; Videos &gt;</nav>
-      <h2>Your Videos</h2>
+      <Videos_Section videos={[]} />
       <button onClick={() => navigate("upload-video")}>
         Upload a new video
       </button>
-      {/* <main>
-        {videos.map((vid) => (
-          <div className="video-container" key={vid.id}>
-            <button>Delete</button>
-          </div>
-        ))}
-      </main> */}
     </div>
   );
 };
