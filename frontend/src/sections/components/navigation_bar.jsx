@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import NavImage from "./../../assets/gem.png";
 import "./../css/navigation.css";
 
 const Navigation_bar = () => {
@@ -48,7 +49,14 @@ const Navigation_bar = () => {
           onClick={() => setOpen(!open)}
         >
           {open ? <FiX size={25} /> : <FiMenu size={25} />}
-          <nav className="navigation">
+          <nav
+            className="navigation"
+            style={{
+              backgroundImage: NavImage,
+              backgroundRepeat: "no-repeat",
+              objectFit: "cover",
+            }}
+          >
             {links.map((link) => (
               <a key={link.id} href={link.link} className="nav-link">
                 {link.name}

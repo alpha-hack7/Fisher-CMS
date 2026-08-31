@@ -1,73 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import car_01 from "../assets/advertisements/vid_001.mp4";
-import car_02 from "../assets/advertisements/vid_002.mp4";
-import car_03 from "../assets/advertisements/vid_003.mp4";
-import car_04 from "../assets/advertisements/vid_004.mp4";
-import car_05 from "../assets/advertisements/vid_005.mp4";
-import car_06 from "../assets/advertisements/vid_006.mp4";
-import car_07 from "../assets/advertisements/vid_007.mp4";
-import car_08 from "../assets/advertisements/vid_008.mp4";
+import { toast } from "react-toastify";
+import { useVideos } from "../api/video";
 import "../css/cars.css";
+import Loader from "../sections/components/loader";
 import Navigation_bar from "../sections/components/navigation_bar";
-const cars = [
-  {
-    id: 1,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_01,
-  },
-  {
-    id: 2,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_02,
-  },
-  {
-    id: 3,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_03,
-  },
-  {
-    id: 4,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_04,
-  },
-  {
-    id: 5,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_05,
-  },
-  {
-    id: 6,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_06,
-  },
-  {
-    id: 7,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_07,
-  },
-  {
-    id: 8,
-    name: "Car One",
-    description: "This is the first car.",
-    thumbnail: "videos/GT.jpg",
-    video: car_08,
-  },
-];
-const Car = ({ car_image, car_vid, car_name, car_description }) => {
+export const Car = ({ car_image, car_vid, car_name, car_description }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setFullScreen] = useState(false);
@@ -170,16 +107,16 @@ const Car = ({ car_image, car_vid, car_name, car_description }) => {
     </div>
   );
 };
-const CarVideos = () => {
+const CarVideos = ({ car_vids }) => {
   return (
     <div className="car-videos">
-      {cars.map((car) => (
+      {car_vids.map((car) => (
         <Car
           key={car.id}
-          car_image={car.thumbnail}
-          car_vid={car.video}
-          car_name={car.name}
-          car_description={car.description}
+          car_image={car.thumbnail_url}
+          car_vid={car.video_url}
+          car_name={car.title}
+          car_description={car.short_text_description}
         />
       ))}
     </div>
@@ -187,11 +124,18 @@ const CarVideos = () => {
 };
 
 const Cars = () => {
+  const { data: car_vids, isLoading, error } = useVideos();
+  useEffect(() => {
+    if (error) {
+      toast.error("Videos failed to load");
+    }
+  }, [error]);
+  if (isLoading) return <Loader />;
   return (
     <>
       <Navigation_bar />
       <section className="cars">
-        <CarVideos />
+        <CarVideos car_vids={car_vids} />
       </section>
     </>
   );

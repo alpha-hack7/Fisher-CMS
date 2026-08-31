@@ -5,7 +5,7 @@ import { add_category, useCategories } from "../../api/category";
 import Loader from "../../sections/components/loader";
 import "./css/constants.css";
 
-export const Category = () => {
+export const Category = ({ setCategory }) => {
   const { data: categories, isLoading, error } = useCategories();
   useEffect(() => {
     if (error) {
@@ -16,7 +16,7 @@ export const Category = () => {
   return (
     <div>
       <label htmlFor="category">Category:</label>
-      <select name="" id="category">
+      <select onChange={(e) => setCategory(e.target.value)} id="category">
         <option value="">Select a category</option>
         {categories.map((category) => (
           <option value={category.id} key={category.id}>

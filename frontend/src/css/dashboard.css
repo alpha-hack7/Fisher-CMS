@@ -14,9 +14,11 @@ body[spacing="dashboard"] {
   justify-content: flex-start;
   text-align: left;
   position: static;
+  overflow: hidden;
 }
 @media (width < 700px) {
   .dashboard-main {
+    width: 90%;
     position: fixed;
     left: 55px;
   }

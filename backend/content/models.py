@@ -29,6 +29,8 @@ class Video(models.Model):
     )
     video_url = models.URLField(null=True, blank=True)
     video_public_id = models.CharField(max_length=255, null=True, blank=True)
+    thumbnail_url = models.URLField(null=True)
+    thumbnail_public_id = models.CharField(null=True,max_length=255)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -45,6 +47,8 @@ class Post(models.Model):
         related_name="posts",
     )
     title = models.CharField(max_length=255, null=False, blank=False)
+    short_text = models.CharField(max_length=255, null=False, blank=False, default="Short text")
+    description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.DRAFT

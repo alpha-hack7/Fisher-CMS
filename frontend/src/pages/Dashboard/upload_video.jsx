@@ -1,11 +1,15 @@
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { upload_video } from "../../api/video";
 import Loader from "../../sections/components/loader";
 import { Category, New_Category, Upload_Video_Dialog } from "./constants";
 import "./css/upload_video.css";
 
 const Upload_video = () => {
   const [loading, setLoading] = useState(false);
+  const [video, setVideo] = useState(null);
+  const [videoThumbnail, setVideoThumbnail] = useState(null);
+  const [category, setCategory] = useState("");
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState({
     title: "",
@@ -18,8 +22,15 @@ const Upload_video = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
     setLoading(true);
+    formData.append("thumbnail", videoThumbnail);
+    formData.append("video", video);
+    formData.append("title", content.title);
+    formData.append("short_text", content.short_text);
+    formData.append("category", category);
     try {
+      await upload_video(formData);
       toast.success("Video uploaded successfully");
     } catch (error) {
       toast.error(error || "Video upload failed");
@@ -40,7 +51,7 @@ const Upload_video = () => {
       <nav>Dashboard &gt; Videos &gt; Upload Video &gt;</nav>
       <div className="upload-video">
         <form>
-          <Category />
+          <Category setCategory={setCategory} />
           <div>
             <label htmlFor="title">Title:</label>
             <input
@@ -63,12 +74,23 @@ const Upload_video = () => {
             ></textarea>
           </div>
           <div>
+            <label htmlFor="video-thumbnail">Video Thumbnail:</label>
+            <input
+              type="file"
+              name="thumbnail"
+              id="video-thumbnail"
+              accept="image/*"
+              onChange={(e) => setVideoThumbnail(e.target.files[0])}
+            />
+          </div>
+          <div>
             <label htmlFor="import-video">Import Video</label>
             <input
               type="file"
               name="import-video"
               accept="video/*"
               id="import-video"
+              onChange={(e) => setVideo(e.target.files[0])}
             />
           </div>
           <New_Category />

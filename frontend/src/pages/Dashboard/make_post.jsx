@@ -4,6 +4,7 @@ import { upload_post } from "../../api/post";
 import { Category, New_Category } from "./constants";
 import "./css/make_post.css";
 const Make_post = () => {
+  const [category, setCategory] = useState("");
   const [post, setPost] = useState({
     title: "",
     short_text: "",
@@ -24,8 +25,9 @@ const Make_post = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = { ...post, category };
     try {
-      await upload_post(post);
+      await upload_post(payload);
       toast.success(`Submit successfull. ${post.title}`);
     } catch (error) {
       toast.error(error || "Something went wrong");
@@ -38,7 +40,7 @@ const Make_post = () => {
       <nav>Dashboard &gt; Posts &gt; Make Post &gt;</nav>
       <div className="make-post">
         <form onSubmit={handleSubmit}>
-          <Category />
+          <Category setCategory={setCategory} />
           <div>
             <label htmlFor="title">Title: </label>
             <input

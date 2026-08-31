@@ -20,6 +20,8 @@ class PostSerializer(serializers.ModelSerializer):
             "id",
             "category",
             "title",
+            "short_text",
+            "description",
             "status",
             "created_at",
         )
@@ -39,6 +41,8 @@ class VideoSerializer(serializers.ModelSerializer):
             "video",
             "video_url",
             "video_public_id",
+            "thumbnail_public_id",
+            "thumbnail_url",
             "created_at",
             "updated_at",
         )

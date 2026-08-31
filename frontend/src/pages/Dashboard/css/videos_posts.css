@@ -1,0 +1,61 @@
+.video {
+  background-color: var(--bg);
+  width: 250px;
+  position: relative;
+  border-radius: 10px;
+}
+.video .car {
+  width: 100%;
+}
+.video-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.video button {
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.video:hover button {
+  opacity: 1;
+}
+.all-videos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  max-height: 75dvh;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post {
+  width: max-content;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #555;
+}
+.all-posts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-height: 75dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  margin-bottom: 1rem;
+}
+.make-post-btn {
+  float: right;
+}
+
+.upload-video-btn {
+  float: right;
+  margin-right: 3rem;
+}
