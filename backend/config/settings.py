@@ -86,8 +86,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 CORS_ALLOWED_ORIGINS = [
-    "https://www.andambifisher.site/",
-    "https://fickfishmooney.vercel.app/",
+    "https://www.andambifisher.site",
+    "https://fickfishmooney.vercel.app",
 ]
 REST_AUTH = {
     "USE_JWT": True,
