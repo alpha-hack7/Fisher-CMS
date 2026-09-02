@@ -41,7 +41,9 @@ cloudinary.config(
     api_secret=CLOUDINARY_API_SECRET,
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "https://fisher-cms-backend.onrender.com",
+]
 
 AUTH_USER_MODEL = "account.User"
 ACCOUNT_LOGIN_METHODS = {"username"}
@@ -83,7 +85,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://www.andambifisher.site/",
+    "https://fickfishmooney.vercel.app/",
+]
 REST_AUTH = {
     "USE_JWT": True,
     "TOKEN_MODEL": None,
