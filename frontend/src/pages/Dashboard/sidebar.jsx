@@ -1,14 +1,14 @@
 import { Fragment, useState } from "react";
 import {
-  FiArrowLeftCircle,
-  FiChevronsLeft,
-  FiChevronsRight,
-  FiDollarSign,
-  FiEdit,
-  FiFileText,
-  FiGrid,
-  FiLogOut,
-} from "react-icons/fi";
+  ArrowLeftCircle,
+  ChevronsLeft,
+  ChevronsRight,
+  DollarSign,
+  Edit,
+  FileText,
+  Grid,
+  LogOut,
+} from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logout } from "../../api/logout";
@@ -31,34 +31,34 @@ const Sidebar = () => {
       setLoading(false);
     }
   };
-  const LogOut = {
+  const Logout = {
     label: "Logout",
-    icon: <FiLogOut size={20} color="var(--text)" onClick={handleLogout} />,
+    icon: <LogOut size={20} color="var(--text)" onClick={handleLogout} />,
   };
   const Links = [
     {
       id: 1,
       label: "Dashboard",
       to: "/dashboard",
-      icon: <FiGrid color="var(--text)" />,
+      icon: <Grid color="var(--text)" />,
     },
     {
       id: 2,
       label: "Drafts",
       to: "/dashboard/drafts",
-      icon: <FiEdit color="var(--text)" />,
+      icon: <Edit color="var(--text)" />,
     },
     {
       id: 3,
       label: "Videos",
       to: "/dashboard/videos",
-      icon: <FiFileText color="var(--text)" />,
+      icon: <FileText color="var(--text)" />,
     },
     {
       id: 4,
       label: "Posts",
       to: "/dashboard/posts",
-      icon: <FiDollarSign color="var(--text)" />,
+      icon: <DollarSign color="var(--text)" />,
     },
   ];
   if (loading) return <Loader />;
@@ -74,8 +74,8 @@ const Sidebar = () => {
   );
   const full_logout = (
     <div className="logout">
-      <Fragment>{LogOut.icon}</Fragment>
-      <span>{LogOut.label}</span>
+      <Fragment>{Logout.icon}</Fragment>
+      <span>{Logout.label}</span>
     </div>
   );
   const icon_logout = (
@@ -103,7 +103,7 @@ const Sidebar = () => {
     <aside className="sidebar">
       <section>
         <div>
-          <FiArrowLeftCircle
+          <ArrowLeftCircle
             size={30}
             color="var(--text)"
             onClick={() => navigate(-1)}
@@ -125,7 +125,7 @@ const Sidebar = () => {
         </div>
       </section>
       <button className="minimize-sidebar" onClick={toggleSidebar}>
-        {open ? <FiChevronsLeft size={30} /> : <FiChevronsRight size={30} />}
+        {open ? <ChevronsLeft size={30} /> : <ChevronsRight size={30} />}
       </button>
     </aside>
   );

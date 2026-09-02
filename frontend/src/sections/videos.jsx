@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import car_001 from "../assets/car_videos/car_001.jpg";
 import car_002 from "../assets/car_videos/car_002.jpg";
 import car_003 from "../assets/car_videos/car_003.jpg";
@@ -63,13 +62,13 @@ const Videos = () => {
   };
   return (
     <section className="videos-section" id="videos">
-      <h2>Car Videos</h2>
+      <h2>Cars</h2>
       <div className="videos-container">
         <div id="co">
           <LeftArrow onClick={handleLeftClick} />
           <div
             className="container"
-            style={{ transform: `translateX(-${offset * 54}vw)` }}
+            style={{ transform: `translateX(-${offset * 80}vw)` }}
           >
             {cars.map((car, index) => (
               <Car
@@ -83,9 +82,9 @@ const Videos = () => {
           <RightArrow onClick={handleRightClick} />
         </div>
       </div>
-      <button className="view-all">
+      {/* <button className="view-all">
         <Link to="/car-videos">View Videos</Link>
-      </button>
+      </button> */}
     </section>
   );
 };

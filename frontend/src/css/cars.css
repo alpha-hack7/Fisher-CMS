@@ -44,8 +44,7 @@
   overflow-x: clip;
   padding: 0.3rem 0.6rem;
   padding-top: 50%;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.7);
 }
 

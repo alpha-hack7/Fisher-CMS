@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Eye, EyeOff } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../api/login";
@@ -57,9 +57,9 @@ const Login = () => {
             />
             <span className="show-password">
               {showPassword ? (
-                <FiEye onClick={() => setShowPassword(false)} />
+                <Eye onClick={() => setShowPassword(false)} />
               ) : (
-                <FiEyeOff onClick={() => setShowPassword(true)} />
+                <EyeOff onClick={() => setShowPassword(true)} />
               )}
             </span>
           </div>

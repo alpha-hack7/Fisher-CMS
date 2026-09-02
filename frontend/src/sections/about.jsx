@@ -1,22 +1,60 @@
-import Img_001 from "../assets/about/img_001.png";
-import Img_002 from "../assets/about/img_002.png";
-import Img_003 from "../assets/about/img_003.png";
+import { useEffect, useState } from "react";
+import pic_001 from "../assets/photos/fisher_001.jpeg";
+import pic_002 from "../assets/photos/fisher_002.jpeg";
+import pic_003 from "../assets/photos/fisher_003.jpeg";
+import pic_004 from "../assets/photos/fisher_004.jpeg";
+import pic_005 from "../assets/photos/fisher_005.jpeg";
+import pic_006 from "../assets/photos/fisher_006.jpeg";
+import pic_007 from "../assets/photos/fisher_007.jpeg";
+import pic_008 from "../assets/photos/fisher_008.jpeg";
 import "../css/about.css";
 
+const About_Images = () => {
+  const [activeIndex, setActiveIndex] = useState(1);
+  const images = [
+    pic_001,
+    pic_002,
+    pic_003,
+    pic_004,
+    pic_005,
+    pic_006,
+    pic_007,
+    pic_008,
+  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+  const leftIndex = (activeIndex - 1 + images.length) % images.length;
+  const rightIndex = (activeIndex + 1) % images.length;
+  return (
+    <>
+      <div className="carousel">
+        <img
+          className="side left"
+          src={images[leftIndex]}
+          alt="Fisher Andambi"
+        />
+        <img
+          className="active"
+          src={images[activeIndex]}
+          alt="Fisher Andambi"
+        />
+        <img
+          className="side right"
+          src={images[rightIndex]}
+          alt="Fisher Andambi"
+        />
+      </div>
+    </>
+  );
+};
 const About = () => {
   return (
     <section className="about" id="about">
-      <div className="about-images">
-        <div className="image">
-          <img src={Img_001} alt="Fisher Andambi" />
-        </div>
-        <div className="image active">
-          <img src={Img_002} alt="Fisher Andambi" />
-        </div>
-        <div className="image">
-          <img src={Img_003} alt="Fisher Andambi" />
-        </div>
-      </div>
+      <About_Images />
       <div className="about-info">
         <h2>Hi, My name is Fisher Andambi</h2>
         <p>

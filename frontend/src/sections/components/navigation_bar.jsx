@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { Menu, X } from "react-feather";
 import NavImage from "./../../assets/gem.png";
 import "./../css/navigation.css";
 
@@ -48,7 +48,7 @@ const Navigation_bar = () => {
           data-open={open}
           onClick={() => setOpen(!open)}
         >
-          {open ? <FiX size={25} /> : <FiMenu size={25} />}
+          {open ? <X size={25} /> : <Menu size={25} />}
           <nav
             className="navigation"
             style={{

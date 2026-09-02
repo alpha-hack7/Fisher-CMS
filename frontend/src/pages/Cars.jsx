@@ -78,6 +78,7 @@ export const Car = ({ car_image, car_vid, car_name, car_description }) => {
         <img
           src={car_image}
           alt="Thumbnail"
+          onClick={handleFullScreen}
           style={{
             position: "absolute",
             top: 0,
@@ -110,7 +111,7 @@ export const Car = ({ car_image, car_vid, car_name, car_description }) => {
 const CarVideos = ({ car_vids }) => {
   return (
     <div className="car-videos">
-      {car_vids.map((car) => (
+      {car_vids?.map((car) => (
         <Car
           key={car.id}
           car_image={car.thumbnail_url}

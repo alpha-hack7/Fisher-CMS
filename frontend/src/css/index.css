@@ -1,10 +1,11 @@
 :root {
   --primary: #888;
+  --bg: #131516;
   --navbar: #9a9a9a;
   --secondary: #2e2e2e;
   --sidebar: #2e2e2e;
   --tag: #3646ff;
-  --text: #ffffff;
+  --text: #15181c;
   --border: #646cff;
   --accent: #999;
   --yes-btn: #0f0;
@@ -17,8 +18,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
