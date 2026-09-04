@@ -12,19 +12,24 @@
   --no-btn: #f00;
   --yes-btn-hover: #0c0;
   --no-btn-hover: #c00;
-
+}
+:root[data-theme="dark"] {
+  --text: #fff;
+}
+html {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   background-color: var(--bg);
-
+  font-size: 12px;
+  scroll-behavior: smooth;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -33,10 +38,6 @@
 nav {
   background-color: var(--navbar);
   padding: 0.5rem 1rem;
-}
-html {
-  font-size: 12px;
-  scroll-behavior: smooth;
 }
 @media (width > 744px) {
   html {

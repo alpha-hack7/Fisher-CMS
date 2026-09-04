@@ -41,10 +41,7 @@ cloudinary.config(
     api_secret=CLOUDINARY_API_SECRET,
 )
 
-ALLOWED_HOSTS = [
-    "https://fisher-cms-backend.onrender.com",
-]
-
+ALLOWED_HOSTS = ["https://fisher-cms-backend.onrender.com", "127.0.0.1", "localhost"]
 AUTH_USER_MODEL = "account.User"
 ACCOUNT_LOGIN_METHODS = {"username"}
 
@@ -86,6 +83,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
     "https://www.andambifisher.site",
     "https://fickfishmooney.vercel.app",
 ]
@@ -135,19 +133,20 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 # FOR DEVELOPMENT - LOCAL POSTGRES DATABASE
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DB_NAME"),
-#         "USER": "postgres",
-#         "PASSWORD": env("DB_PASSWORD"),
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
-# }
-
-# FOR PRODUCTION - NEON POSTGRES
-DATABASES = {"default": env.db("DATABASE_URL")}
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": "postgres",
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
+else:
+    # FOR PRODUCTION - NEON POSTGRES
+    DATABASES = {"default": env.db("DATABASE_URL")}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
