@@ -1,0 +1,5 @@
+User-agent: *
+DisAllow: /login
+DisAllow: /dashboard
+
+Sitemap: https://www.andambifisher.site/sitemap.xml
