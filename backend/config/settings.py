@@ -41,7 +41,7 @@ cloudinary.config(
     api_secret=CLOUDINARY_API_SECRET,
 )
 
-ALLOWED_HOSTS = ["https://fisher-cms-backend.onrender.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["fisher-cms-backend.onrender.com", "127.0.0.1", "localhost"]
 AUTH_USER_MODEL = "account.User"
 ACCOUNT_LOGIN_METHODS = {"username"}
 
