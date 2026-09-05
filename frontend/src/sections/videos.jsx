@@ -1,10 +1,6 @@
 import { useState } from "react";
-import car_001 from "../assets/car_videos/car_001.jpg";
-import car_002 from "../assets/car_videos/car_002.jpg";
-import car_003 from "../assets/car_videos/car_003.jpg";
-import car_004 from "../assets/car_videos/car_004.jpg";
-import car_005 from "../assets/car_videos/car_005.jpg";
 import "../css/videos.css";
+import { car_001, car_002, car_003, car_004, car_005 } from "../data/cars.js";
 import { LeftArrow, RightArrow } from "./components/nav_arrow.jsx";
 
 const cars = [
