@@ -134,20 +134,20 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 # FOR DEVELOPMENT - LOCAL POSTGRES DATABASE
-# if DEBUG:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.postgresql",
-#             "NAME": env("DB_NAME"),
-#             "USER": "postgres",
-#             "PASSWORD": env("DB_PASSWORD"),
-#             "HOST": "localhost",
-#             "PORT": "5432",
-#         }
-#     }
-# else:
-# FOR PRODUCTION - NEON POSTGRES
-DATABASES = {"default": env.db("DATABASE_URL")}
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": "postgres",
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
+else:
+    # FOR PRODUCTION - NEON POSTGRES
+    DATABASES = {"default": env.db("DATABASE_URL")}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
