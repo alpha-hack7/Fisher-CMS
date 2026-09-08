@@ -63,6 +63,7 @@
   }
   .carousel {
     flex: 1;
+    height: 400px;
   }
   .about-info {
     flex: 1;

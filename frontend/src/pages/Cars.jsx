@@ -131,11 +131,12 @@ const Cars = () => {
       toast.error("Videos failed to load");
     }
   }, [error]);
-  if (isLoading) return <Loader />;
+  // if (isLoading) return <Loader />;
   return (
     <>
       <Navigation_bar />
       <section className="cars">
+        {isLoading && <Loader />}
         <CarVideos car_vids={car_vids} />
       </section>
     </>
