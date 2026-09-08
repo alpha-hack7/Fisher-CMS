@@ -27,6 +27,7 @@ div#co {
   height: 300px;
   position: relative;
   border-radius: 1rem;
+  background-color: var(--secondary);
   .video-thumbnail {
     width: 100%;
     height: 100%;

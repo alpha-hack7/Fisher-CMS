@@ -25,7 +25,8 @@ const Make_post = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { ...post, category };
+    const status = e.nativeEvent.submitter.value;
+    const payload = { ...post, category, status };
     try {
       await upload_post(payload);
       toast.success(`Submit successfull. ${post.title}`);
@@ -75,8 +76,12 @@ const Make_post = () => {
           </div>
           <New_Category />
           <div>
-            <button type="button">Save Draft</button>
-            <button type="submit">Post</button>
+            <button type="submit" name="status" value="draft">
+              Save Draft
+            </button>
+            <button type="submit" name="status" value="ready">
+              Post
+            </button>
           </div>
         </form>
         <dialog id="post">

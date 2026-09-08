@@ -15,6 +15,12 @@
 .home-dashboard {
   background-color: var(--secondary);
 }
+.home-dashboard main {
+  margin: 2rem;
+}
+.home-dashboard main h2 {
+  margin-bottom: 1rem;
+}
 .home-dashboard main h2,
 nav {
   text-align: left;

@@ -3,11 +3,11 @@ import {
   ArrowLeftCircle,
   ChevronsLeft,
   ChevronsRight,
-  DollarSign,
+  Copy,
   Edit,
-  FileText,
   Grid,
   LogOut,
+  PlayCircle,
 } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -33,32 +33,34 @@ const Sidebar = () => {
   };
   const Logout = {
     label: "Logout",
-    icon: <LogOut size={20} color="var(--text)" onClick={handleLogout} />,
+    icon: (
+      <LogOut size={20} color="var(--sidebar_icons)" onClick={handleLogout} />
+    ),
   };
   const Links = [
     {
       id: 1,
       label: "Dashboard",
       to: "/dashboard",
-      icon: <Grid color="var(--text)" />,
+      icon: <Grid size={20} color="var(--sidebar_icons)" />,
     },
     {
       id: 2,
       label: "Drafts",
       to: "/dashboard/drafts",
-      icon: <Edit color="var(--text)" />,
+      icon: <Edit size={20} color="var(--sidebar_icons)" />,
     },
     {
       id: 3,
       label: "Videos",
       to: "/dashboard/videos",
-      icon: <FileText color="var(--text)" />,
+      icon: <PlayCircle size={20} color="var(--sidebar_icons)" />,
     },
     {
       id: 4,
       label: "Posts",
       to: "/dashboard/posts",
-      icon: <DollarSign color="var(--text)" />,
+      icon: <Copy size={20} color="var(--sidebar_icons)" />,
     },
   ];
   if (loading) return <Loader />;
@@ -80,8 +82,8 @@ const Sidebar = () => {
   );
   const icon_logout = (
     <div className="logout">
-      <Fragment>{LogOut.icon}</Fragment>
-      <span className="tag">{LogOut.label}</span>
+      <Fragment>{Logout.icon}</Fragment>
+      <span className="tag">{Logout.label}</span>
     </div>
   );
 
@@ -104,8 +106,8 @@ const Sidebar = () => {
       <section>
         <div>
           <ArrowLeftCircle
-            size={30}
-            color="var(--text)"
+            size={25}
+            color="var(--sidebar_icons)"
             onClick={() => navigate(-1)}
           />
           <div>

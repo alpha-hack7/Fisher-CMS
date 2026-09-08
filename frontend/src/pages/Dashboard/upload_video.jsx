@@ -1,12 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { upload_video } from "../../api/video";
 import Loader from "../../sections/components/loader";
-import { Category, New_Category, Upload_Video_Dialog } from "./constants";
+import {
+  Category,
+  New_Category,
+  Save_Draft_Video_Dialog,
+  Upload_Video_Dialog,
+} from "./constants";
 import "./css/upload_video.css";
 
 const Upload_video = () => {
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("upload");
   const [video, setVideo] = useState(null);
   const [videoThumbnail, setVideoThumbnail] = useState(null);
   const [category, setCategory] = useState("");
@@ -16,12 +22,9 @@ const Upload_video = () => {
     short_text: "",
   });
   const upload_video_ref = useRef(null);
-  const uploadVideo = () => {
-    setOpen(true);
-    upload_video_ref.current?.showModal();
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const save_draft_video_ref = useRef(null);
+
+  const handleSubmit = async (video_status) => {
     const formData = new FormData();
     setLoading(true);
     formData.append("thumbnail", videoThumbnail);
@@ -29,6 +32,7 @@ const Upload_video = () => {
     formData.append("title", content.title);
     formData.append("short_text", content.short_text);
     formData.append("category", category);
+    formData.append("status", video_status);
     try {
       await upload_video(formData);
       toast.success("Video uploaded successfully");
@@ -39,6 +43,15 @@ const Upload_video = () => {
       setOpen(false);
     }
   };
+  useEffect(() => {
+    if (open) {
+      if (status === "upload") {
+        upload_video_ref.current?.showModal();
+      } else if (status === "draft") {
+        save_draft_video_ref.current?.showModal();
+      }
+    }
+  }, [open, status]);
   const handleChange = (e) => {
     setContent((prev) => ({
       ...prev,
@@ -94,19 +107,42 @@ const Upload_video = () => {
             />
           </div>
           <New_Category />
-          <button type="button" disabled={loading} onClick={uploadVideo}>
-            {loading ? "Uploading" : "Upload Video"}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(true);
+              setStatus("upload");
+            }}
+          >
+            Upload Video
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setStatus("draft");
+              setOpen(true);
+            }}
+          >
+            Save Draft
           </button>
         </form>
       </div>
-      {open && (
-        <Upload_Video_Dialog
-          title={"Upload Video Title"}
-          upload_ref={upload_video_ref}
-          onUpload={handleSubmit}
-          setOpen={setOpen}
-        />
-      )}
+      {open &&
+        (status === "upload" ? (
+          <Upload_Video_Dialog
+            title={"Upload Video"}
+            upload_ref={upload_video_ref}
+            onUpload={handleSubmit}
+            setOpen={setOpen}
+          />
+        ) : (
+          <Save_Draft_Video_Dialog
+            title={"Save Draft"}
+            save_draft_ref={save_draft_video_ref}
+            onUpload={handleSubmit}
+            setOpen={setOpen}
+          />
+        ))}
     </article>
   );
 };

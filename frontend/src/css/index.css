@@ -4,6 +4,7 @@
   --navbar: #9a9a9a;
   --secondary: #2e2e2e;
   --sidebar: #2e2e2e;
+  --sidebar_icons: #9a9a9a;
   --tag: #3646ff;
   --text: #15181c;
   --border: #646cff;
@@ -68,7 +69,7 @@ select {
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100dvh;
+  max-height: 100dvh;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
@@ -92,6 +93,7 @@ button {
 }
 button:hover {
   border-color: #646cff;
+  cursor: pointer;
 }
 button:focus,
 button:focus-visible {

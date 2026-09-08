@@ -106,7 +106,7 @@ const Upload_Video_Dialog = ({ title, upload_ref, onUpload, setOpen }) => {
       <h3>Upload {title}</h3>
       <p>Are you sure you want to upload this video?</p>
       <div>
-        <button type="submit" onClick={onUpload}>
+        <button type="button" onClick={() => onUpload("ready")}>
           Yes, Upload
         </button>
         <button
@@ -122,5 +122,37 @@ const Upload_Video_Dialog = ({ title, upload_ref, onUpload, setOpen }) => {
     </dialog>
   );
 };
+const Save_Draft_Video_Dialog = ({
+  title,
+  save_draft_ref,
+  onUpload,
+  setOpen,
+}) => {
+  return (
+    <dialog id="upload-video" ref={save_draft_ref}>
+      <h3>Save Draft {title}</h3>
+      <p>Are you sure you want to save this video as a draft?</p>
+      <div>
+        <button type="button" onClick={() => onUpload("draft")}>
+          Yes, Save Draft
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(false);
+            save_draft_ref.current.close();
+          }}
+        >
+          No, Cancel
+        </button>
+      </div>
+    </dialog>
+  );
+};
 
-export { Delete_Video_Dialog, New_Category_Dialog, Upload_Video_Dialog };
+export {
+  Delete_Video_Dialog,
+  New_Category_Dialog,
+  Save_Draft_Video_Dialog,
+  Upload_Video_Dialog,
+};

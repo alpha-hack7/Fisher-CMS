@@ -3,6 +3,7 @@
   width: fit-content;
   border-right: 2px solid var(--secondary);
   height: 100dvh;
+  max-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

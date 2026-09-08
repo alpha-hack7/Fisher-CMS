@@ -4,7 +4,7 @@
   right: 0;
   text-align: right;
   padding: 0.6rem 0.8rem;
-  z-index: 100;
+  z-index: 11;
   background-color: #333;
   border-radius: 10px;
   /* width: fit-content; */
@@ -36,6 +36,7 @@ nav.navigation {
   gap: 4rem;
   padding-right: 2rem;
   width: max-content;
+  z-index: 10;
 }
 nav.navigation a {
   border: 2px solid #999;

@@ -1,40 +1,8 @@
 import { useState } from "react";
 import "../css/videos.css";
-import { car_001, car_002, car_003, car_004, car_005 } from "../data/cars.js";
+import { cars } from "../data/cars.js";
 import { LeftArrow, RightArrow } from "./components/nav_arrow.jsx";
 
-const cars = [
-  {
-    car_type: car_001,
-    name: "2022 Ford Mustang GT Review",
-    description:
-      "A comprehensive review of the 2022 Ford Mustang GT, covering performance, design, and driving experience.",
-  },
-  {
-    car_type: car_002,
-    name: "2022 Ford Mustang GT Review",
-    description:
-      "A comprehensive review of the 2022 Ford Mustang GT, covering performance, design, and driving experience.",
-  },
-  {
-    car_type: car_003,
-    name: "2022 Ford Mustang GT Review",
-    description:
-      "A comprehensive review of the 2022 Ford Mustang GT, covering performance, design, and driving experience.",
-  },
-  {
-    car_type: car_004,
-    name: "2022 Ford Mustang GT Review",
-    description:
-      "A comprehensive review of the 2022 Ford Mustang GT, covering performance, design, and driving experience.",
-  },
-  {
-    car_type: car_005,
-    name: "2022 Ford Mustang GT Review",
-    description:
-      "A comprehensive review of the 2022 Ford Mustang GT, covering performance, design, and driving experience.",
-  },
-];
 const Car = ({ car_type, name, description }) => {
   return (
     <div className="video-item">

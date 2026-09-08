@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useVideos } from "../../api/video";
 import Loader from "../../sections/components/loader";
+import "./css/content.css";
 import { Videos_Section } from "./drafts_page";
 const Videos_page = () => {
   const navigate = useNavigate();
@@ -12,11 +13,11 @@ const Videos_page = () => {
       toast.error("Videos failed to load");
     }
   }, [error]);
-  if (isLoading) return <Loader />;
   return (
-    <div>
+    <div className="videos-page">
       <nav>Dashboard &gt; Videos &gt;</nav>
-      <Videos_Section videos={videos} />
+      <h2>Videos</h2>
+      {isLoading ? <Loader /> : <Videos_Section videos={videos} />}
       <button
         onClick={() => navigate("upload-video")}
         className="upload-video-btn"

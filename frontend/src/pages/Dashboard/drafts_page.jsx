@@ -1,15 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Edit, Trash2 } from "react-feather";
 import { toast } from "react-toastify";
-import { usePosts } from "../../api/post";
-import { useVideos } from "../../api/video";
+import { useDraftPosts } from "../../api/post";
+import { useDraftVideos } from "../../api/video";
 import Loader from "../../sections/components/loader";
 import { Car } from "../Cars";
 import "./css/videos_posts.css";
 
-const Post = ({ category, time, about, title, description }) => {
+const Post = ({ time, about, title, description }) => {
   return (
     <div className="post">
-      <h3>{category}</h3>
       <h2>{title}</h2>
       <p>
         <em>{about}</em>
@@ -19,8 +19,12 @@ const Post = ({ category, time, about, title, description }) => {
         <time>{time}</time>
       </div>
       <div className="post-buttons">
-        <button>Edit</button>
-        <button>Delete</button>
+        <button title="Edit Post">
+          <Edit size={20} />
+        </button>
+        <button title="Delete Post">
+          <Trash2 size={20} />
+        </button>
       </div>
     </div>
   );
@@ -28,13 +32,11 @@ const Post = ({ category, time, about, title, description }) => {
 export const Posts_Section = ({ posts }) => {
   return (
     <section>
-      <h2>Posts</h2>
       {posts.length > 0 ? (
         <div className="all-posts">
           {posts.map((post) => (
             <div key={post.id}>
               <Post
-                category={post.category}
                 title={post.title}
                 about={post.short_text}
                 description={post.description}
@@ -52,7 +54,6 @@ export const Posts_Section = ({ posts }) => {
 export const Videos_Section = ({ videos }) => {
   return (
     <section>
-      <h2>Videos</h2>
       {videos.length > 0 ? (
         <div className="all-videos">
           {videos.map((video) => (
@@ -64,8 +65,12 @@ export const Videos_Section = ({ videos }) => {
                 car_vid={video.video_url}
               />
               <div className="video-buttons">
-                <button>Edit</button>
-                <button>Delete</button>
+                <button title="Edit Video">
+                  <Edit size={20} />
+                </button>
+                <button title="Delete Video">
+                  <Trash2 size={20} />
+                </button>
               </div>
             </div>
           ))}
@@ -78,8 +83,10 @@ export const Videos_Section = ({ videos }) => {
 };
 
 const Drafts_page = () => {
-  const videoQuery = useVideos();
-  const postQuery = usePosts();
+  const videoQuery = useDraftVideos();
+  const postQuery = useDraftPosts();
+  const [status, setStatus] = useState("posts");
+  const [nav, setNav] = useState(["Dashboard", "Drafts"]);
   useEffect(() => {
     if (videoQuery.error) {
       toast.error("Videos failed to load");
@@ -90,13 +97,36 @@ const Drafts_page = () => {
   }, [videoQuery.error, postQuery.error]);
   if (videoQuery.isLoading || postQuery.isLoading) return <Loader />;
   return (
-    <div>
-      <nav>Dashboard &gt; Drafts &gt;</nav>
+    <div className="drafts-page">
+      <nav>{nav.join(" > ")}</nav>
       <h3>These are the posts and videos you have made but not uploaded.</h3>
       <p>You can think of them as work in progress.</p>
       <main>
-        <Posts_Section posts={postQuery.data} />
-        <Videos_Section videos={videoQuery.data} />
+        <div className="draft-selection">
+          <span
+            onClick={() => {
+              setStatus("posts");
+              setNav(["Dashboard", "Drafts", "Posts"]);
+            }}
+          >
+            Posts
+          </span>
+          <span
+            onClick={() => {
+              setStatus("videos");
+              setNav(["Dashboard", "Drafts", "Videos"]);
+            }}
+          >
+            Videos
+          </span>
+        </div>
+        {videoQuery.isLoading || postQuery.isLoading ? (
+          <Loader />
+        ) : status === "posts" ? (
+          <Posts_Section posts={postQuery.data} />
+        ) : (
+          <Videos_Section videos={videoQuery.data} />
+        )}
       </main>
     </div>
   );

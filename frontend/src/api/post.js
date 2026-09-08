@@ -9,10 +9,20 @@ const all_posts = async () => {
   const response = await API.get("api/content/posts/");
   return response.data;
 };
+const all_draft_posts = async () => {
+  const response = await API.get("api/content/posts/draft/");
+  return response.data;
+};
 
 export const usePosts = () => {
   return useQuery({
     queryKey: ["posts"],
     queryFn: all_posts,
+  });
+};
+export const useDraftPosts = () => {
+  return useQuery({
+    queryKey: ["draft-posts"],
+    queryFn: all_draft_posts,
   });
 };
