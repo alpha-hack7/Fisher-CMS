@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import API from "./user";
+import API from "./api";
 
 export const add_category = async (category) => {
   const response = await API.post("api/content/category/", { name: category });

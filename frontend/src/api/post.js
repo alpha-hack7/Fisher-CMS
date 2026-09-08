@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import API from "./user";
+import API from "./api";
 
 export const upload_post = async (payload) => {
   const response = await API.post("api/content/post/", payload);

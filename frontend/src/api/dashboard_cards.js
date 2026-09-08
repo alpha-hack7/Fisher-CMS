@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import API from "./user";
+import API from "./api";
 
 const dashboardCards = async () => {
   const response = await API.get("api/content/dashboard-cards/");

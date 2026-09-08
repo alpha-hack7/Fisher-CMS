@@ -1,4 +1,4 @@
-import API from "./user";
+import API from "./api";
 
 export const logout = async () => {
   try {
