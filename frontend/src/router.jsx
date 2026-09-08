@@ -1,21 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Advertisements from "./pages/Advertisements.jsx";
-import Cars from "./pages/Cars.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import Drafts_page from "./pages/Dashboard/drafts_page.jsx";
-import Home_dashboard from "./pages/Dashboard/home_dashboard.jsx";
-import Make_post from "./pages/Dashboard/make_post.jsx";
-import Posts from "./pages/Dashboard/Posts.jsx";
-import Posts_page from "./pages/Dashboard/posts_page.jsx";
-import Upload_video from "./pages/Dashboard/upload_video.jsx";
-import Videos from "./pages/Dashboard/Videos.jsx";
-import Videos_page from "./pages/Dashboard/videos_page.jsx";
-import Forgot_password from "./pages/forgot_password.jsx";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/login.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import Advertisements from "./pages/Advertisements";
+import Cars from "./pages/Cars";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Drafts_page from "./pages/Dashboard/drafts_page";
+import Home_dashboard from "./pages/Dashboard/home_dashboard";
+import Make_post from "./pages/Dashboard/make_post";
+import Posts from "./pages/Dashboard/Posts";
+import Posts_page from "./pages/Dashboard/posts_page";
+import Upload_video from "./pages/Dashboard/upload_video";
+import Videos from "./pages/Dashboard/Videos";
+import Videos_page from "./pages/Dashboard/videos_page";
+import Forgot_password from "./pages/Forgot_password";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 
-function App() {
+function Fisher_CMS() {
   return (
     <BrowserRouter>
       <Routes>
@@ -42,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default Fisher_CMS;

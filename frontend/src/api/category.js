@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import API from "./api";
 
 export const add_category = async (category) => {
@@ -16,11 +15,4 @@ export const rename_category = async (name, id) => {
 export const delete_category = async (id) => {
   const response = await API.patch(`api/content/category/${id}`);
   return response.data;
-};
-
-export const useCategories = () => {
-  return useQuery({
-    queryKey: ["categories"],
-    queryFn: get_categories,
-  });
 };

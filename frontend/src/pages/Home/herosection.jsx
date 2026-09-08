@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../css/herosection.css";
+import Hero_Image from "../../assets/hero-image.png";
+import "./css/herosection.css";
 
 const HeroSection = () => {
   useEffect(() => {
@@ -13,7 +14,10 @@ const HeroSection = () => {
   }, []);
   return (
     <section className="hero-section" id="home">
-      <div className="hero-image"></div>
+      <div
+        className="hero-image"
+        style={{ backgroundImage: `url(${Hero_Image})` }}
+      ></div>
       <div className="hero-text">
         <h1>where engines roar and adventures begin</h1>
         <p>

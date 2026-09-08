@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { upload_post } from "../../api/post";
-import { Category, New_Category } from "./constants";
 import "./css/make_post.css";
+import { Category, New_Category } from "./dialogs";
 const Make_post = () => {
   const [category, setCategory] = useState("");
   const [post, setPost] = useState({

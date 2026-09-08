@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useDashboardCards } from "../../api/dashboard_cards";
-import Loader from "../../sections/components/loader";
+import Loader from "../../components/loader";
+import { useDashboardCards } from "../../hooks/useDashboardCards";
 import "./css/home_dashboard.css";
 
 const Card = ({ title, number }) => {

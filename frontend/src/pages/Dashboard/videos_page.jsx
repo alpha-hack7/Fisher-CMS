@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useVideos } from "../../api/video";
-import Loader from "../../sections/components/loader";
+import Loader from "../../components/loader";
+import { Videos_Section } from "../../components/video";
+import { useVideos } from "../../hooks/useVideos";
 import "./css/content.css";
-import { Videos_Section } from "./drafts_page";
+
 const Videos_page = () => {
   const navigate = useNavigate();
   const { data: videos, isLoading, error } = useVideos();

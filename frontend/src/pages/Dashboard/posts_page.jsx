@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { usePosts } from "../../api/post";
-import Loader from "../../sections/components/loader";
-import { Posts_Section } from "./drafts_page";
+import Loader from "../../components/loader";
+import { Posts_Section } from "../../components/post";
+import { usePosts } from "../../hooks/usePosts";
 
 const Posts_page = () => {
   const navigate = useNavigate();

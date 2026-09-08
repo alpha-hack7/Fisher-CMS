@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import pic_001 from "../assets/photos/fisher_001.jpeg";
-import pic_002 from "../assets/photos/fisher_002.jpeg";
-import pic_003 from "../assets/photos/fisher_003.jpeg";
-import pic_004 from "../assets/photos/fisher_004.jpeg";
-import pic_005 from "../assets/photos/fisher_005.jpeg";
-import pic_006 from "../assets/photos/fisher_006.jpeg";
-import pic_007 from "../assets/photos/fisher_007.jpeg";
-import pic_008 from "../assets/photos/fisher_008.jpeg";
-import "../css/about.css";
+import {
+  pic_001,
+  pic_002,
+  pic_003,
+  pic_004,
+  pic_005,
+  pic_006,
+  pic_007,
+  pic_008,
+} from "../../data/pictures";
+import "./css/about.css";
 
 const About_Images = () => {
   const [activeIndex, setActiveIndex] = useState(1);

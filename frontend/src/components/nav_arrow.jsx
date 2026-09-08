@@ -1,14 +1,13 @@
-import Arrow from "../../assets/anchor.png";
-// import ArrowLeft as Arrow from "react-feather";
-import "./components.css";
+import { ArrowLeft, ArrowRight } from "react-feather";
+import "./css/components.css";
 
 export const RightArrow = ({ onClick }) => (
   <div className="arrow right" onClick={onClick}>
-    <img src={Arrow} alt="Right Arrow" />
+    <ArrowRight size={25} color="black" />
   </div>
 );
 export const LeftArrow = ({ onClick }) => (
   <div className="arrow left" onClick={onClick}>
-    <img src={Arrow} alt="Left Arrow" />
+    <ArrowLeft size={25} color="black" />
   </div>
 );

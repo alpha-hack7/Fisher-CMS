@@ -3,8 +3,8 @@ import { Eye, EyeOff } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../api/login";
-import "../css/login.css";
-import Loader from "./../sections/components/loader";
+import Loader from "./../components/loader";
+import "./css/login.css";
 const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ username: "", password: "" });

@@ -58,4 +58,14 @@ const cards = [
   },
 ];
 
-export { cards };
+export {
+  cards,
+  pic_001,
+  pic_002,
+  pic_003,
+  pic_004,
+  pic_005,
+  pic_006,
+  pic_007,
+  pic_008,
+};

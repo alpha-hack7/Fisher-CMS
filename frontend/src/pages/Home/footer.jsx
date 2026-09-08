@@ -1,5 +1,5 @@
-import FooterVideo from "../assets/vid.mp4";
-import "../css/footer.css";
+import FooterVideo from "../../assets/vid.mp4";
+import "./css/footer.css";
 
 const Footer = () => {
   return (

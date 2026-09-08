@@ -1,9 +1,10 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { add_category, useCategories } from "../../api/category";
-import Loader from "../../sections/components/loader";
-import "./css/constants.css";
+import { add_category } from "../../api/category";
+import Loader from "../../components/loader";
+import { useCategories } from "../../hooks/useCategories";
+import "./css/dialogs.css";
 
 export const Category = ({ setCategory }) => {
   const { data: categories, isLoading, error } = useCategories();

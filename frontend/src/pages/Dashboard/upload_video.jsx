@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { upload_video } from "../../api/video";
-import Loader from "../../sections/components/loader";
+import Loader from "../../components/loader";
+import "./css/upload_video.css";
 import {
   Category,
   New_Category,
   Save_Draft_Video_Dialog,
   Upload_Video_Dialog,
-} from "./constants";
-import "./css/upload_video.css";
+} from "./dialogs";
 
 const Upload_video = () => {
   const [loading, setLoading] = useState(false);

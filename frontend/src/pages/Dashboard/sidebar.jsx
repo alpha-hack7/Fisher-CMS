@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logout } from "../../api/logout";
-import Loader from "../../sections/components/loader";
+import Loader from "../../components/loader";
 import "./css/sidebar.css";
 
 const Sidebar = () => {

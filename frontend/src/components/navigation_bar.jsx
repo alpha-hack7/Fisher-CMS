@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "react-feather";
-import NavImage from "./../../assets/gem.png";
-import "./../css/navigation.css";
+import NavImage from "./../assets/gem.png";
+import "./css/navigation.css";
 
 const Navigation_bar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);

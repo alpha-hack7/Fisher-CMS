@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "../css/videos.css";
-import { cars } from "../data/cars.js";
-import { LeftArrow, RightArrow } from "./components/nav_arrow.jsx";
+import { LeftArrow, RightArrow } from "../../components/nav_arrow.jsx";
+import { cars } from "../../data/cars.js";
+import "./css/videos.css";
 
-const Car = ({ car_type, name, description }) => {
+const Car_Picture = ({ car_type, name, description }) => {
   return (
     <div className="video-item">
       <div className="video-thumbnail">
@@ -35,7 +35,7 @@ const Videos = () => {
             style={{ transform: `translateX(-${offset * 80}vw)` }}
           >
             {cars.map((car, index) => (
-              <Car
+              <Car_Picture
                 key={index}
                 name={car.name}
                 description={car.description}

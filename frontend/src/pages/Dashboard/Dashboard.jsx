@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import "./../css/dashboard.css";
-import Sidebar from "./Dashboard/sidebar.jsx";
+import "./css/dashboard.css";
+import Sidebar from "./sidebar.jsx";
 
 const Dashboard = () => {
   useEffect(() => {
