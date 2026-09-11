@@ -12,7 +12,7 @@ import Videos from "./pages/Dashboard/Videos";
 import Videos_page from "./pages/Dashboard/videos_page";
 import Forgot_password from "./pages/forgot_password";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import NotFound from "./pages/NotFound";
 
 function Fisher_CMS() {
