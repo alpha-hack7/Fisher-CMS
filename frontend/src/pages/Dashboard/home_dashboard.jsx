@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import Loader from "../../components/loader";
 import { useDashboardCards } from "../../hooks/useDashboardCards";
 import "./css/home_dashboard.css";
+import {} from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ title, number }) => {
   return (
@@ -12,7 +14,17 @@ const Card = ({ title, number }) => {
     </div>
   );
 };
-
+const Section = ({ content, destination_link, destination_name }) => {
+  const navigate = useNavigate();
+  return (
+    <section className="w-full h-20 p-4 flex flex-col">
+      <div className="w-full h-full"></div>
+      <button className="w-fit" onClick={() => navigate(destination_link)}>
+        {destination_name}
+      </button>
+    </section>
+  );
+};
 const Home_dashboard = () => {
   const username = localStorage.getItem("username");
   const { data: cards, isLoading, error } = useDashboardCards();
@@ -33,6 +45,18 @@ const Home_dashboard = () => {
           <Card title="Draft Videos" number={cards?.draft_videos_count} />
           <Card title="Draft Posts" number={cards?.draft_posts_count} />
         </article>
+        <div className="flex gap-4 mt-4">
+          <Section
+            destination_link="posts/make-post/"
+            destination_name="Make Post"
+            content="Empty"
+          />
+          <Section
+            destination_link="videos/upload-video/"
+            destination_name="Upload Video"
+            content="Empty"
+          />
+        </div>
       </main>
     </div>
   );
