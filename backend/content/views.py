@@ -112,8 +112,22 @@ def draft_videos(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(["DELETE", "PATCH"])
 def update_video(request, pk):
-    pass
+    try:
+        video = get_object_or_404(Video, pk=pk)
+    except Video.DoesNotExist:
+        return "Video Item does not exist"
+
+    if request.method == "DELETE":
+        video.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == "PATCH":
+        serializer = VideoSerializer(video, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(["GET"])
@@ -140,11 +154,17 @@ def upload_post(request):
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(["PATCH"])
+@api_view(["PATCH", "DELETE"])
 def update_post(request, pk):
-    """Update Post details"""
-    post = get_object_or_404(Post, pk=pk)
-    serializer = PostSerializer(post, data=request.data, partial=True)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    try:
+        post = get_object_or_404(Post, pk=pk)
+    except Post.DoesNotExist:
+        return "Post Item not found"
+    if request.method == "PATCH":
+        serializer = PostSerializer(post, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    elif request.method == "DELETE":
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

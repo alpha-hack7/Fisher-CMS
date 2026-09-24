@@ -1,7 +1,9 @@
 import { Edit, Trash2 } from "react-feather";
 import { Car_Video } from "./car_videos";
+import { delete_video } from "../api/video";
 
-const Video = ({ video }) => {
+const Video = ({ video, video_id }) => {
+  const id = video_id;
   return (
     <div
       className="group/video bg-transparent w-62.5 relative rounded-2xl"
@@ -24,6 +26,7 @@ const Video = ({ video }) => {
         <button
           className="bg-transparent opacity-0 transition-opacity duration-1000 border-[#555] border group-hover/video:opacity-100"
           title="Delete Video"
+          onClick={() => delete_video(id)}
         >
           <Trash2 size={20} />
         </button>
@@ -37,7 +40,7 @@ export const Videos_Section = ({ videos }) => {
       {videos.length > 0 ? (
         <div className="flex flex-row justify-center flex-wrap gap-4 mb-4">
           {videos.map((video) => (
-            <Video video={video} key={video.id} />
+            <Video video={video} key={video.id} video_id={video.id} />
           ))}
         </div>
       ) : (

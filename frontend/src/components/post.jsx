@@ -1,7 +1,8 @@
 import { Edit, Trash2 } from "react-feather";
 import { formatDate } from "../utils/formatDate";
+import { delete_post } from "../api/post";
 
-const Post = ({ post }) => {
+const Post = ({ post, post_id }) => {
   return (
     <div className="group/post min-w-62.5 min-h-50 relative p-4 rounded-2xl border border-[#555]">
       <h2>{post.title}</h2>
@@ -22,6 +23,7 @@ const Post = ({ post }) => {
         <button
           className="group-hover/post:opacity-100 bg-transparent opacity-0 border-[#555] border transition-opacity duration-1000"
           title="Delete Post"
+          onClick={() => delete_post(post_id)}
         >
           <Trash2 size={20} />
         </button>
@@ -35,7 +37,7 @@ export const Posts_Section = ({ posts }) => {
       {posts.length > 0 ? (
         <div className="flex flex-row flex-wrap gap-4 mb-4">
           {posts.map((post) => (
-            <Post post={post} key={post.id} />
+            <Post post={post} key={post.id} post_id={post.id} />
           ))}
         </div>
       ) : (
