@@ -1,9 +1,18 @@
 import { Edit, Trash2 } from "react-feather";
 import { Car_Video } from "./car_videos";
 import { delete_video } from "../api/video";
+import { toast } from "react-toastify";
 
 const Video = ({ video, video_id }) => {
   const id = video_id;
+  const deleteVideo = async () => {
+    try {
+      await delete_video(id);
+      toast.success("Video deleted successfully");
+    } catch (error) {
+      toast.error(error | "Something went wrong");
+    }
+  };
   return (
     <div
       className="group/video bg-transparent w-62.5 relative rounded-2xl"
@@ -16,19 +25,19 @@ const Video = ({ video, video_id }) => {
         car_name={video.title}
         car_vid={video.video_url}
       />
-      <div className="absolute top-0 right-0">
+      <div className="absolute top-0 right-0 flex gap-4">
         <button
-          className="bg-transparent opacity-0 transition-opacity duration-1000 border-[#555] border group-hover/video:opacity-100"
+          className="bg-black/80 opacity-0 transition-opacity duration-1000 border-[#999] border group-hover/video:opacity-100"
           title="Edit Video"
         >
-          <Edit size={20} />
+          <Edit size={20} className="text-white" />
         </button>
         <button
-          className="bg-transparent opacity-0 transition-opacity duration-1000 border-[#555] border group-hover/video:opacity-100"
+          className="bg-black/80 opacity-0 transition-opacity duration-1000 border-[#999] border group-hover/video:opacity-100"
           title="Delete Video"
-          onClick={() => delete_video(id)}
+          onClick={deleteVideo}
         >
-          <Trash2 size={20} />
+          <Trash2 size={20} className="text-white" />
         </button>
       </div>
     </div>

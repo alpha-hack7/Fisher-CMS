@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { forgot_password } from "../api/forgot_password";
-import Loader from "./../components/loader";
+import Loader from "../components/loader";
 const Forgot_password = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");

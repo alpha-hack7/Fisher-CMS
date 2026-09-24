@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { LeftArrow, RightArrow } from "../../components/nav_arrow";
-import { cards } from "../../data/pictures";
+import { LeftArrow, RightArrow } from "../../../components/nav_arrow";
+import { cards } from "../../../data/pictures";
 
 const Picture = ({ Image, description, navigate }) => {
   return (

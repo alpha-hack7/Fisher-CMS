@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
-import { Videos_Section } from "../../components/video";
-import { useVideos } from "../../hooks/useVideos";
+import Loader from "../../../../components/loader";
+import { Videos_Section } from "../../../../components/video";
+import { useVideos } from "../../../../hooks/useVideos";
 
 const Videos_page = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Videos_page = () => {
   }, [error]);
   return (
     <div>
-      <nav>Dashboard &gt; Videos &gt;</nav>
+      <nav id="dash-nav">Dashboard &gt; Videos &gt;</nav>
       <h2 className="m-4">Videos</h2>
       {isLoading ? <Loader /> : <Videos_Section videos={videos} />}
       <button

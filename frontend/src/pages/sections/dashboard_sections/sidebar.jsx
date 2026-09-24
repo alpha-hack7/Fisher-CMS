@@ -11,8 +11,8 @@ import {
 } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { logout } from "../../api/logout";
-import Loader from "../../components/loader";
+import { logout } from "../../../api/logout";
+import Loader from "../../../components/loader";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ const Sidebar = () => {
   );
 
   const iconsNav = (
-    <div className="min-w-12 mx-auto max-w-max mt-4 flex flex-col gap-4">
+    <div className="w-15 mx-auto mt-4 flex flex-col gap-4">
       {Links.map((link) => (
         <div
           className="group/menu-div cursor-pointer flex items-center gap-4 py-2 px-4 relative"
@@ -101,7 +101,7 @@ const Sidebar = () => {
           key={link.id}
         >
           <Fragment>{link.icon}</Fragment>
-          <span className="group-hover/menu-div:opacity-100 group-hover/menu-div:translate-y-[-50%] absolute bg-tag text-olive-400 border border-border-color left-full top-[50%] opacity-0 py-1 px-2">
+          <span className="group-hover/menu-div:opacity-100 group-hover/menu-div:translate-y-[-50%] absolute bg-tag text-olive-400 border border-border-color left-12 top-[50%] opacity-0 py-1 px-2">
             {link.label}
           </span>
         </div>

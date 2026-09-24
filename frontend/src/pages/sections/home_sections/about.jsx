@@ -8,7 +8,7 @@ import {
   pic_006,
   pic_007,
   pic_008,
-} from "../../data/pictures";
+} from "../../../data/pictures";
 
 const About_Images = () => {
   const [activeIndex, setActiveIndex] = useState(1);

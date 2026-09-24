@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-const Posts = () => {
+const Posts_Layout = () => {
   return <Outlet />;
 };
 
-export default Posts;
+export default Posts_Layout;

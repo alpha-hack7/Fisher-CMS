@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
-import { Posts_Section } from "../../components/post";
-import { usePosts } from "../../hooks/usePosts";
+import Loader from "../../../../components/loader";
+import { Posts_Section } from "../../../../components/post";
+import { usePosts } from "../../../../hooks/usePosts";
 
 const Posts_page = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Posts_page = () => {
   }, [error]);
   return (
     <div>
-      <nav>Dashboard &gt; Posts &gt;</nav>
+      <nav id="dash-nav">Dashboard &gt; Posts &gt;</nav>
       <h2 className="m-4">Posts</h2>
       {isLoading ? <Loader /> : <Posts_Section posts={posts} />}
       <button onClick={() => navigate("make-post")} className="float-right">

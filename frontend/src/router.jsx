@@ -1,18 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Advertisements from "./pages/Advertisements";
+// Public Routes
+import Home from "./pages/Home";
 import Cars from "./pages/Cars";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Drafts_page from "./pages/Dashboard/drafts_page";
-import Home_dashboard from "./pages/Dashboard/home_dashboard";
-import Make_post from "./pages/Dashboard/make_post";
-import Posts from "./pages/Dashboard/Posts";
-import Posts_page from "./pages/Dashboard/posts_page";
-import Upload_video from "./pages/Dashboard/upload_video";
-import Videos from "./pages/Dashboard/Videos";
-import Videos_page from "./pages/Dashboard/videos_page";
-import Forgot_password from "./pages/forgot_password";
-import Home from "./pages/Home/Home";
+import Advertisements from "./pages/Advertisements";
 import Login from "./pages/login";
+import Forgot_password from "./pages/forgot_password";
+import Dashboard from "./pages/Dashboard";
+// Private Routes
+import Home_dashboard from "./pages/sections/dashboard_sections/home_dashboard";
+import Drafts_page from "./pages/sections/dashboard_sections/drafts_page";
+import Videos_Layout from "./pages/sections/dashboard_sections/videos/Videos_Layout";
+import Videos_page from "./pages/sections/dashboard_sections/videos/videos_page";
+import Upload_video from "./pages/sections/dashboard_sections/videos/upload_video";
+import Posts_Layout from "./pages/sections/dashboard_sections/posts/Posts_Layout";
+import Posts_page from "./pages/sections/dashboard_sections/posts/posts_page";
+import Make_post from "./pages/sections/dashboard_sections/posts/make_post";
 import NotFound from "./pages/NotFound";
 
 function Fisher_CMS() {
@@ -27,11 +29,11 @@ function Fisher_CMS() {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<Home_dashboard />} />
           <Route path="drafts" element={<Drafts_page />} />
-          <Route path="videos" element={<Videos />}>
+          <Route path="videos" element={<Videos_Layout />}>
             <Route index element={<Videos_page />} />
             <Route path="upload-video" element={<Upload_video />} />
           </Route>
-          <Route path="posts" element={<Posts />}>
+          <Route path="posts" element={<Posts_Layout />}>
             <Route index element={<Posts_page />} />
             <Route path="make-post" element={<Make_post />} />
           </Route>

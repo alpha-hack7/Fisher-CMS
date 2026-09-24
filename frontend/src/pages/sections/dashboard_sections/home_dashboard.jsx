@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
-import { useDashboardCards } from "../../hooks/useDashboardCards";
+import Loader from "../../../components/loader";
+import { useDashboardCards } from "../../../hooks/useDashboardCards";
 import {} from "react-feather";
 import { useNavigate } from "react-router-dom";
 
 const Card = ({ title, number }) => {
   return (
     <div className="w-fit flex flex-col items-center p-4 rounded-2xl bg-primary border-border-color ">
-      <h3>{title}</h3>
-      <p>{number}</p>
+      <span>{title}</span>
+      <span className="font-bold text-2xl">{number}</span>
     </div>
   );
 };
@@ -35,10 +35,12 @@ const Home_dashboard = () => {
   }, [error]);
   if (isLoading) return <Loader />;
   return (
-    <div className="bg-secondary">
-      <nav className="text-left">Dashboard &gt;</nav>
-      <main className="m-8">
-        <h2 className="mb-4 text-left">Welcome Back, {username}</h2>
+    <div>
+      <nav id="dash-nav">Dashboard &gt;</nav>
+      <main className="mt-8 bg-secondary p-8">
+        <h2 className="mb-4 text-left font-bold text-2xl">
+          Welcome Back, {username}
+        </h2>
         <article className="flex flex-wrap gap-4">
           <Card title="Published Videos" number={cards?.videos_count} />
           <Card title="Published Posts" number={cards?.posts_count} />

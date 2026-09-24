@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { LeftArrow, RightArrow } from "../../components/nav_arrow.jsx";
-import { cars } from "../../data/cars.js";
+import { LeftArrow, RightArrow } from "../../../components/nav_arrow.jsx";
+import { cars } from "../../../data/cars.js";
 
 const Car_Picture = ({ car_type, name, description }) => {
   return (

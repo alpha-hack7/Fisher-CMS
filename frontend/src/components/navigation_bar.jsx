@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "react-feather";
 import NavImage from "./../assets/gem.png";
+import { Link } from "react-router-dom";
 
 const Navigation_bar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 700);
@@ -55,22 +56,22 @@ const Navigation_bar = () => {
             }}
           >
             {links.map((link) => (
-              <a className="w-full bg-[#333]" key={link.id} href={link.link}>
+              <Link className="w-full bg-[#333]" key={link.id} to={link.link}>
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
       ) : (
-        <nav className="bg-transparent flex justify-end gap-16 pr-8 w-max z-10">
+        <nav className="flex justify-end gap-16 pr-8 w-full z-10">
           {links.map((link) => (
-            <a
+            <Link
               key={link.id}
-              href={link.link}
-              className="border-2 border-[#999] py-[0.6rem] px-[0.9rem] rounded-[10px]"
+              to={link.link}
+              className="py-[0.6rem] px-[0.9rem] rounded-[10px] after:content-[''] after:block after:w-0 after:h-0.5 hover:after:w-full after:bg-border-color after:transition-all after:duration-300 after:ease-linear"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
       )}

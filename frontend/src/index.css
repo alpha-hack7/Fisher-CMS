@@ -40,7 +40,7 @@
   head link {
     border-radius: 50%;
   }
-  input,
+
   select {
     padding: 0.5em 0.75em;
   }
@@ -78,8 +78,11 @@
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
-  input {
+  input,
+  textarea {
     border-radius: 10px;
+    outline: 1px solid var(--color-border-color);
+    padding: 0.5rem 0.75rem;
   }
 
   @media (prefers-color-scheme: light) {
@@ -132,5 +135,8 @@
     opacity: 1;
     right: 30px;
     top: 50px;
+  }
+  nav#dash-nav {
+    background-color: var(--color-secondary);
   }
 }

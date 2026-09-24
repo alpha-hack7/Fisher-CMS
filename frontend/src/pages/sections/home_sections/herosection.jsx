@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Hero_Image from "../../assets/hero-image.png";
+import Hero_Image from "../../../assets/hero-image.png";
 
 const HeroSection = () => {
   useEffect(() => {

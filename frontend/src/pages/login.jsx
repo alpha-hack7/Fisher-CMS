@@ -3,7 +3,7 @@ import { Eye, EyeOff } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../api/login";
-import Loader from "./../components/loader";
+import Loader from "../components/loader";
 
 const Login = () => {
   const navigate = useNavigate();

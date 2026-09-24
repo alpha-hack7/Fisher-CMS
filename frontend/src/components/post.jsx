@@ -1,8 +1,18 @@
 import { Edit, Trash2 } from "react-feather";
 import { formatDate } from "../utils/formatDate";
 import { delete_post } from "../api/post";
+import { toast } from "react-toastify";
 
 const Post = ({ post, post_id }) => {
+  const id = post_id;
+  const deletePost = async () => {
+    try {
+      await delete_post(id);
+      toast.success("Post deleted Successfully!");
+    } catch (error) {
+      toast.error(error | "Something Went Wrong");
+    }
+  };
   return (
     <div className="group/post min-w-62.5 min-h-50 relative p-4 rounded-2xl border border-[#555]">
       <h2>{post.title}</h2>
@@ -23,7 +33,7 @@ const Post = ({ post, post_id }) => {
         <button
           className="group-hover/post:opacity-100 bg-transparent opacity-0 border-[#555] border transition-opacity duration-1000"
           title="Delete Post"
-          onClick={() => delete_post(post_id)}
+          onClick={deletePost}
         >
           <Trash2 size={20} />
         </button>

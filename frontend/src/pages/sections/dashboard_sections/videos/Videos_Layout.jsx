@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-const Videos = () => {
+const Videos_Layout = () => {
   return <Outlet />;
 };
 
-export default Videos;
+export default Videos_Layout;

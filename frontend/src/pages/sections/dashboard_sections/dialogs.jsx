@@ -1,11 +1,11 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { add_category } from "../../api/category";
-import Loader from "../../components/loader";
-import { useCategories } from "../../hooks/useCategories";
+import { add_category } from "../../../api/category";
+import Loader from "../../../components/loader";
+import { useCategories } from "../../../hooks/useCategories";
 
-export const Category = ({ setCategory }) => {
+const Category = ({ setCategory }) => {
   const { data: categories, isLoading, error } = useCategories();
   useEffect(() => {
     if (error) {
@@ -23,7 +23,7 @@ export const Category = ({ setCategory }) => {
       >
         <option value="">Select a category</option>
         {categories.map((category) => (
-          <option value={category.id} key={category.id}>
+          <option value={category.id} key={category.id} className="text-black">
             {category.name}
           </option>
         ))}
@@ -32,7 +32,7 @@ export const Category = ({ setCategory }) => {
   );
 };
 
-export const New_Category = () => {
+const New_Category = () => {
   const new_category_ref = useRef(null);
   const [open, setOpen] = useState(false);
   return (
@@ -52,6 +52,7 @@ export const New_Category = () => {
     </>
   );
 };
+// New category dialog
 const New_Category_Dialog = ({ dialog_ref, setOpen }) => {
   const [category, setCategory] = useState("");
   const queryClient = useQueryClient();
@@ -105,18 +106,39 @@ const New_Category_Dialog = ({ dialog_ref, setOpen }) => {
     </dialog>
   );
 };
-const Delete_Video_Dialog = ({ title, delete_ref }) => {
+// Save draft post dialog
+const Save_Draft_Post_Dialog = ({
+  title,
+  onUpload,
+  draft_post_ref,
+  setOpen,
+}) => {
   return (
-    <dialog id="delete-video" ref={delete_ref}>
+    <dialog
+      className="w-fit mx-auto flex flex-col gap-4 px-4 py-2 my-auto"
+      id="draft-post"
+      ref={draft_post_ref}
+    >
       <h3>{title}</h3>
-      <p>Confirm deletion of selected video.</p>
-      <div>
-        <button type="submit">Yes, Delete This</button>
-        <button type="button">No, Don't dare</button>
+      <p>Are you ready to post this as a draft?</p>
+      <div className="flex justify-between">
+        <button type="submit" onClick={onUpload}>
+          Yes, Post This
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(false);
+            draft_post_ref.current.close();
+          }}
+        >
+          No, Not Yet
+        </button>
       </div>
     </dialog>
   );
 };
+// Upload video Dialog
 const Upload_Video_Dialog = ({ title, upload_ref, onUpload, setOpen }) => {
   return (
     <dialog
@@ -143,6 +165,34 @@ const Upload_Video_Dialog = ({ title, upload_ref, onUpload, setOpen }) => {
     </dialog>
   );
 };
+// Save post dialog
+const Save_Post_Dialog = ({ title, onUpload, post_ref, setOpen }) => {
+  return (
+    <dialog
+      id="post"
+      className="w-fit mx-auto flex flex-col gap-4 px-4 py-2 my-auto"
+      ref={post_ref}
+    >
+      <h3>{title}</h3>
+      <p>Are you ready to post this?</p>
+      <div className="flex justify-between">
+        <button type="submit" onClick={onUpload}>
+          Yes, Post This
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(false);
+            post_ref.current.close();
+          }}
+        >
+          No, Not Yet
+        </button>
+      </div>
+    </dialog>
+  );
+};
+// Upload draft video dialog
 const Save_Draft_Video_Dialog = ({
   title,
   save_draft_ref,
@@ -174,10 +224,41 @@ const Save_Draft_Video_Dialog = ({
     </dialog>
   );
 };
+// Delete video dialog
+const Delete_Video_Dialog = ({ title, delete_ref }) => {
+  return (
+    <dialog id="delete-video" ref={delete_ref}>
+      <h3>{title}</h3>
+      <p>Confirm deletion of selected video.</p>
+      <div>
+        <button type="submit">Yes, Delete This</button>
+        <button type="button">No, Don't dare</button>
+      </div>
+    </dialog>
+  );
+};
+// Delete post dialog
+const Delete_Post_Dialog = ({ post }) => {
+  return (
+    <dialog id="delete-post">
+      <h3>{post.title}</h3>
+      <p>Confirm deletion of this post.</p>
+      <div>
+        <button type="submit">Yes, Delete This</button>
+        <button type="button">No, Don't dare</button>
+      </div>
+    </dialog>
+  );
+};
 
 export {
+  Category,
+  New_Category,
   Delete_Video_Dialog,
   New_Category_Dialog,
   Save_Draft_Video_Dialog,
   Upload_Video_Dialog,
+  Save_Post_Dialog,
+  Save_Draft_Post_Dialog,
+  Delete_Post_Dialog,
 };

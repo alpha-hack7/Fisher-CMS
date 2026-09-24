@@ -94,7 +94,7 @@ export const Car_Video = ({
         onPlay={handlePlay}
         onPause={handlePause}
       ></video>
-      <div className="group-hover/car:opacity-0 absolute bg-black/80 w-full inset-0 opacity-100 z-3 overflow-x-clip py-[0.3rem] px-[0.6rem] rounded-2xl pointer-events-none">
+      <div className="group-hover/video:opacity-0 absolute bg-black/80 w-full inset-0 opacity-100 z-3 overflow-x-clip py-[0.3rem] px-[0.6rem] rounded-2xl pointer-events-none">
         <h3>{car_name}</h3>
         <p>{car_description}</p>
       </div>

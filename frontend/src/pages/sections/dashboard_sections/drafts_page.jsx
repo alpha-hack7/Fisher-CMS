@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
-import { Posts_Section } from "../../components/post";
-import { Videos_Section } from "../../components/video";
-import { useDraftPosts } from "../../hooks/usePosts";
-import { useDraftVideos } from "../../hooks/useVideos";
+import Loader from "../../../components/loader";
+import { Posts_Section } from "../../../components/post";
+import { Videos_Section } from "../../../components/video";
+import { useDraftPosts } from "../../../hooks/usePosts";
+import { useDraftVideos } from "../../../hooks/useVideos";
 
 const Drafts_page = () => {
   const videoQuery = useDraftVideos();
@@ -22,7 +22,7 @@ const Drafts_page = () => {
   if (videoQuery.isLoading || postQuery.isLoading) return <Loader />;
   return (
     <div className="flex flex-col gap-4">
-      <nav>{nav.join(" > ")}</nav>
+      <nav id="dash-nav">{nav.join(" > ")}</nav>
       <h3>These are the posts and videos you have made but not uploaded.</h3>
       <p>You can think of them as work in progress.</p>
       <main>

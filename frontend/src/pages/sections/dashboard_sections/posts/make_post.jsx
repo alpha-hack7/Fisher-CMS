@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { upload_post } from "../../api/post";
-import { Category, New_Category } from "./dialogs";
+import { upload_post } from "../../../../api/post";
+import {
+  Category,
+  New_Category,
+  Save_Draft_Post_Dialog,
+  Save_Post_Dialog,
+} from "../dialogs";
+import Loader from "../../../../components/loader";
 const Make_post = () => {
+  const _draft_post_ref = useRef(null);
+  const _post_ref = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+  const [open, setOpen] = useState(false);
   const [category, setCategory] = useState("");
   const [post, setPost] = useState({
     title: "",
@@ -22,10 +33,18 @@ const Make_post = () => {
       description: "",
     });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const status = e.nativeEvent.submitter.value;
+  useEffect(() => {
+    if (open) {
+      if (status === "ready") {
+        _post_ref.current?.showModal();
+      } else if (status === "draft") {
+        _draft_post_ref.current?.showModal();
+      }
+    }
+  }, [open, status]);
+  const handleSubmit = async () => {
     const payload = { ...post, category, status };
+    setLoading(true);
     try {
       await upload_post(payload);
       toast.success(`Submit successfull. ${post.title}`);
@@ -33,13 +52,15 @@ const Make_post = () => {
       toast.error(error || "Something went wrong");
     } finally {
       handleReset();
+      setLoading(false);
     }
   };
+  if (loading) return <Loader />;
   return (
     <article>
-      <nav>Dashboard &gt; Posts &gt; Make Post &gt;</nav>
+      <nav id="dash-nav">Dashboard &gt; Posts &gt; Make Post &gt;</nav>
       <div className="mt-4">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative">
+        <form className="flex flex-col gap-4 relative">
           <Category setCategory={setCategory} />
           <div className="flex flex-col">
             <label htmlFor="title">Title: </label>
@@ -74,31 +95,45 @@ const Make_post = () => {
             ></textarea>
           </div>
           <New_Category />
-          <div>
-            <button className="w-fit" type="submit" name="status" value="draft">
+          <div className="flex gap-4">
+            <button
+              className="w-fit"
+              type="button"
+              onClick={() => {
+                setOpen(true);
+                setStatus("draft");
+              }}
+            >
               Save Draft
             </button>
-            <button className="w-fit" type="submit" name="status" value="ready">
+            <button
+              className="w-fit"
+              type="button"
+              onClick={() => {
+                setOpen(true);
+                setStatus("ready");
+              }}
+            >
               Post
             </button>
           </div>
         </form>
-        <dialog id="post">
-          <h3>{post.title}</h3>
-          <p>Are you ready to post this?</p>
-          <div>
-            <button type="submit">Yes, Post This</button>
-            <button type="button">No, Not Yet</button>
-          </div>
-        </dialog>
-        <dialog id="delete-post">
-          <h3>{post.title}</h3>
-          <p>Confirm deletion of this post.</p>
-          <div>
-            <button type="submit">Yes, Delete This</button>
-            <button type="button">No, Don't dare</button>
-          </div>
-        </dialog>
+        {open &&
+          (status === "ready" ? (
+            <Save_Post_Dialog
+              title={post.title}
+              onUpload={handleSubmit}
+              post_ref={_post_ref}
+              setOpen={setOpen}
+            />
+          ) : (
+            <Save_Draft_Post_Dialog
+              title={post.title}
+              onUpload={handleSubmit}
+              draft_post_ref={_draft_post_ref}
+              setOpen={setOpen}
+            />
+          ))}
       </div>
     </article>
   );
