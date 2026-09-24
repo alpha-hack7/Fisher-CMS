@@ -14,11 +14,11 @@ const Posts_page = () => {
     }
   }, [error]);
   return (
-    <div className="posts-page">
+    <div>
       <nav>Dashboard &gt; Posts &gt;</nav>
-      <h2>Posts</h2>
+      <h2 className="m-4">Posts</h2>
       {isLoading ? <Loader /> : <Posts_Section posts={posts} />}
-      <button onClick={() => navigate("make-post")} className="make-post-btn">
+      <button onClick={() => navigate("make-post")} className="float-right">
         Make a new Post
       </button>
     </div>

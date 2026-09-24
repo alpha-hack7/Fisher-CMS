@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export const Car_Video = ({
+  from_video_page = false,
   car_image,
   car_vid,
   car_name,
   car_description,
 }) => {
   const videoRef = useRef(null);
+  const car_width = from_video_page ? "w-full" : "w-45/100";
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setFullScreen] = useState(false);
 
@@ -70,7 +72,7 @@ export const Car_Video = ({
 
   return (
     <div
-      className="car"
+      className={`${car_width} group/car relative rounded-2xl`}
       onMouseEnter={showControls}
       onMouseLeave={hideControls}
     >
@@ -79,20 +81,11 @@ export const Car_Video = ({
           src={car_image}
           alt="Thumbnail"
           onClick={handleFullScreen}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius: "1rem",
-            cursor: "pointer",
-            zIndex: 2,
-          }}
+          className="absolute top-0 left-0 w-full h-full object-cover rounded-2xl cursor-pointer z-2"
         />
       )}
       <video
+        className="w-full h-full object-cover rounded-2xl"
         onClick={handleFullScreen}
         poster={car_image}
         src={car_vid}
@@ -101,7 +94,7 @@ export const Car_Video = ({
         onPlay={handlePlay}
         onPause={handlePause}
       ></video>
-      <div className="car-info">
+      <div className="group-hover/car:opacity-0 absolute bg-black/80 w-full inset-0 opacity-100 z-3 overflow-x-clip py-[0.3rem] px-[0.6rem] rounded-2xl pointer-events-none">
         <h3>{car_name}</h3>
         <p>{car_description}</p>
       </div>
@@ -111,7 +104,7 @@ export const Car_Video = ({
 
 export const CarVideos = ({ car_vids }) => {
   return (
-    <div className="car-videos">
+    <div className="w-full flex flex-row flex-wrap justify-between gap-4">
       {car_vids?.map((car) => (
         <Car_Video
           key={car.id}

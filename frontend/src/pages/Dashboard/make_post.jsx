@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { upload_post } from "../../api/post";
-import "./css/make_post.css";
 import { Category, New_Category } from "./dialogs";
 const Make_post = () => {
   const [category, setCategory] = useState("");
@@ -39,10 +38,10 @@ const Make_post = () => {
   return (
     <article>
       <nav>Dashboard &gt; Posts &gt; Make Post &gt;</nav>
-      <div className="make-post">
-        <form onSubmit={handleSubmit}>
+      <div className="mt-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative">
           <Category setCategory={setCategory} />
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="title">Title: </label>
             <input
               type="text"
@@ -52,7 +51,7 @@ const Make_post = () => {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="short-text-about">Short Text (About): </label>
             <textarea
               name="short_text"
@@ -63,7 +62,7 @@ const Make_post = () => {
               rows="3"
             ></textarea>
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="description">Description: </label>
             <textarea
               name="description"
@@ -76,10 +75,10 @@ const Make_post = () => {
           </div>
           <New_Category />
           <div>
-            <button type="submit" name="status" value="draft">
+            <button className="w-fit" type="submit" name="status" value="draft">
               Save Draft
             </button>
-            <button type="submit" name="status" value="ready">
+            <button className="w-fit" type="submit" name="status" value="ready">
               Post
             </button>
           </div>

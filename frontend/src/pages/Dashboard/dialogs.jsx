@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { add_category } from "../../api/category";
 import Loader from "../../components/loader";
 import { useCategories } from "../../hooks/useCategories";
-import "./css/dialogs.css";
 
 export const Category = ({ setCategory }) => {
   const { data: categories, isLoading, error } = useCategories();
@@ -17,7 +16,11 @@ export const Category = ({ setCategory }) => {
   return (
     <div>
       <label htmlFor="category">Category:</label>
-      <select onChange={(e) => setCategory(e.target.value)} id="category">
+      <select
+        className="w-fit"
+        onChange={(e) => setCategory(e.target.value)}
+        id="category"
+      >
         <option value="">Select a category</option>
         {categories.map((category) => (
           <option value={category.id} key={category.id}>
@@ -35,7 +38,7 @@ export const New_Category = () => {
   return (
     <>
       <div
-        className="new-category"
+        className="absolute top-0 right-0 bg-primary py-2 px-4 rounded-[10px] cursor-pointer"
         onClick={() => {
           setOpen(true);
           new_category_ref.current?.showModal();
@@ -70,19 +73,32 @@ const New_Category_Dialog = ({ dialog_ref, setOpen }) => {
     setOpen(false);
   };
   return (
-    <dialog ref={dialog_ref} id="new-category">
+    <dialog
+      ref={dialog_ref}
+      id="new-category"
+      className="flex w-75 mx-auto flex-col gap-4 items-center rounded-2xl border"
+    >
       <p>Enter name of Category:</p>
       <input
+        className="w-9/10 bg-blue-200 text-black"
         type="text"
         name="new-category"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       />
-      <div>
-        <button type="submit" onClick={handleSubmit}>
+      <div className="w-full flex flex-row">
+        <button
+          className="flex-1 rounded-none bg-yes hover:bg-yes-hover"
+          type="submit"
+          onClick={handleSubmit}
+        >
           Save
         </button>
-        <button type="button" onClick={closeDialog}>
+        <button
+          className="flex-1 rounded-none bg-no hover:bg-no-hover"
+          type="button"
+          onClick={closeDialog}
+        >
           Cancel
         </button>
       </div>
@@ -103,10 +119,14 @@ const Delete_Video_Dialog = ({ title, delete_ref }) => {
 };
 const Upload_Video_Dialog = ({ title, upload_ref, onUpload, setOpen }) => {
   return (
-    <dialog id="upload-video" ref={upload_ref}>
+    <dialog
+      id="upload-video"
+      ref={upload_ref}
+      className="w-fit mx-auto flex flex-col gap-4 px-4 py-2 my-auto"
+    >
       <h3>Upload {title}</h3>
       <p>Are you sure you want to upload this video?</p>
-      <div>
+      <div className="flex justify-between">
         <button type="button" onClick={() => onUpload("ready")}>
           Yes, Upload
         </button>
@@ -130,10 +150,14 @@ const Save_Draft_Video_Dialog = ({
   setOpen,
 }) => {
   return (
-    <dialog id="upload-video" ref={save_draft_ref}>
+    <dialog
+      id="upload-video"
+      ref={save_draft_ref}
+      className="w-fit mx-auto flex flex-col gap-4 px-4 py-2 my-auto"
+    >
       <h3>Save Draft {title}</h3>
       <p>Are you sure you want to save this video as a draft?</p>
-      <div>
+      <div className="flex justify-between">
         <button type="button" onClick={() => onUpload("draft")}>
           Yes, Save Draft
         </button>

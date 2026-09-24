@@ -1,14 +1,13 @@
 import FooterVideo from "../../assets/vid.mp4";
-import "./css/footer.css";
 
 const Footer = () => {
   return (
     <footer>
-      <section className="contact" id="contact">
+      <section className="text-left" id="contact">
         <h2>Contact Me</h2>
-        <p>Tel: +254 742 462 872</p>
-        <p>Email: andambifisher1@gmail.com</p>
-        <div className="social-media">
+        <p className="ml-6">Tel: +254 742 462 872</p>
+        <p className="ml-6">Email: andambifisher1@gmail.com</p>
+        <div className="mt-4 flex justify-center gap-4">
           <a
             href="https://www.instagram.com/andambi_fisher/"
             target="_blank"
@@ -39,10 +38,16 @@ const Footer = () => {
           </a>
         </div>
       </section>
-      <section className="footer-content">
-        <video src={FooterVideo} muted autoPlay loop></video>
+      <section className="bg-[#aaa] mt-8 h-75 w-full md:h-100">
+        <video
+          className="w-full h-full object-cover"
+          src={FooterVideo}
+          muted
+          autoPlay
+          loop
+        ></video>
       </section>
-      <div className="footer-last-message">
+      <div className="text-center">
         <p>
           Thank you for visiting my site! I'm passionate about cars and love
           sharing that passion with fellow enthusiasts.{" "}

@@ -1,6 +1,5 @@
 import Navigation_Bar from "./../../components/navigation_bar";
 import About from "./about";
-import "./css/Home.css";
 import Footer from "./footer";
 import HeroSection from "./herosection";
 import Others from "./others";
@@ -8,9 +7,9 @@ import Videos from "./videos";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navigation_Bar />
-      <div className="home-sections">
+      <div className="flex flex-col gap-8 mt-4">
         <Videos />
         <HeroSection />
         <About />

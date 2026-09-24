@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader";
 import { useDashboardCards } from "../../hooks/useDashboardCards";
-import "./css/home_dashboard.css";
 import {} from "react-feather";
 import { useNavigate } from "react-router-dom";
 
 const Card = ({ title, number }) => {
   return (
-    <div className="card">
+    <div className="w-fit flex flex-col items-center p-4 rounded-2xl bg-primary border-border-color ">
       <h3>{title}</h3>
       <p>{number}</p>
     </div>
@@ -16,6 +15,7 @@ const Card = ({ title, number }) => {
 };
 const Section = ({ content, destination_link, destination_name }) => {
   const navigate = useNavigate();
+  console.log(content);
   return (
     <section className="w-full h-20 p-4 flex flex-col">
       <div className="w-full h-full"></div>
@@ -35,11 +35,11 @@ const Home_dashboard = () => {
   }, [error]);
   if (isLoading) return <Loader />;
   return (
-    <div className="home-dashboard">
-      <nav>Dashboard &gt;</nav>
-      <main>
-        <h2>Welcome Back, {username}</h2>
-        <article className="cards">
+    <div className="bg-secondary">
+      <nav className="text-left">Dashboard &gt;</nav>
+      <main className="m-8">
+        <h2 className="mb-4 text-left">Welcome Back, {username}</h2>
+        <article className="flex flex-wrap gap-4">
           <Card title="Published Videos" number={cards?.videos_count} />
           <Card title="Published Posts" number={cards?.posts_count} />
           <Card title="Draft Videos" number={cards?.draft_videos_count} />

@@ -1,134 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --primary: #888;
-  --bg: #131516;
-  --navbar: #9a9a9a;
-  --secondary: #2e2e2e;
-  --sidebar: #2e2e2e;
-  --sidebar_icons: #9a9a9a;
-  --tag: #3646ff;
-  --text: #15181c;
-  --border: #646cff;
-  --accent: #999;
-  --yes-btn: #0f0;
-  --no-btn: #f00;
-  --yes-btn-hover: #0c0;
-  --no-btn-hover: #c00;
-}
-:root[data-theme="dark"] {
-  --text: #fff;
-}
-html {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  background-color: var(--bg);
-  font-size: 12px;
-  scroll-behavior: smooth;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-nav {
-  background-color: var(--navbar);
-  padding: 0.5rem 1rem;
-}
-@media (width > 744px) {
+@layer base {
   html {
-    font-size: 14px;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    background-color: var(--bg);
+    font-size: 12px;
+    scroll-behavior: smooth;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
-@media (width > 1280px) {
-  html {
-    font-size: 16px;
+  nav {
+    background-color: var(--navbar);
+    padding: 0.5rem 1rem;
   }
-}
+  @media (width > 744px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  @media (width > 1280px) {
+    html {
+      font-size: 16px;
+    }
+  }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-head link {
-  border-radius: 50%;
-}
-input,
-select {
-  padding: 0.5em 0.75em;
-}
-body {
-  margin: 0;
-  min-width: 320px;
-  max-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: none;
-  /* padding-bottom: 1000px; */
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 10px;
-  padding: 0.6em 0.9em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--accent);
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-  cursor: pointer;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-input {
-  border-radius: 10px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
   }
   a:hover {
-    color: #747bff;
+    color: #535bf2;
   }
+  head link {
+    border-radius: 50%;
+  }
+  input,
+  select {
+    padding: 0.5em 0.75em;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    max-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* padding-bottom: 1000px; */
+  }
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
   button {
+    border-radius: 10px;
+    padding: 0.6em 0.9em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
     background-color: #d9d9d9;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #646cff;
+    cursor: pointer;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  input {
+    border-radius: 10px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #d9d9d9;
+    }
+  }
+  @media (width > 300px) {
+    body {
+      padding-inline: 8px;
+    }
+  }
+  @media (width > 768px) {
+    body {
+      padding-inline: 32px;
+    }
+  }
+  @media (width > 1100px) {
+    body {
+      padding-inline: 120px;
+    }
   }
 }
-@media (width > 300px) {
-  body {
-    padding-inline: 8px;
-  }
+
+@theme {
+  --color-primary: #888;
+  --color-yes: #0f0;
+  --color-no: #f00;
+  --color-yes-hover: #0c0;
+  --color-no-hover: #c00;
+  --color-border-color: #646cff;
+  --color-secondary: #2e2e2e;
+  --color-sidebar: #2e2e2e;
+  --color-sidebar_icons: #9a9a9a;
+  --color-tag: #3646ff;
 }
-@media (width > 768px) {
-  body {
-    padding-inline: 32px;
+
+@layer components {
+  body[spacing="dashboard"] {
+    padding: 0;
   }
-}
-@media (width > 1100px) {
-  body {
-    padding-inline: 120px;
+  .is-mobile[data-open="true"] .navigation {
+    opacity: 1;
+    right: 30px;
+    top: 50px;
   }
 }

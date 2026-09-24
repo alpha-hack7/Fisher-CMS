@@ -4,7 +4,6 @@ import { CarVideos } from "../components/car_videos";
 import Loader from "../components/loader";
 import Navigation_bar from "../components/navigation_bar";
 import { useVideos } from "../hooks/useVideos";
-import "./css/cars.css";
 
 const Cars = () => {
   const { data: car_vids, isLoading, error } = useVideos();
@@ -16,7 +15,7 @@ const Cars = () => {
   return (
     <>
       <Navigation_bar />
-      <section className="cars">
+      <section className="flex flex-col gap-4">
         {isLoading && <Loader />}
         <CarVideos car_vids={car_vids} />
       </section>

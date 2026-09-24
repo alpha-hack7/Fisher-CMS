@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import "./css/dashboard.css";
 import Sidebar from "./sidebar.jsx";
 
 const Dashboard = () => {
@@ -11,9 +10,9 @@ const Dashboard = () => {
     };
   }, []);
   return (
-    <div className="dashboard">
+    <div className="flex gap-4 overflow-hidden h-dvh max-h-100dvh">
       <Sidebar />
-      <main className="dashboard-main">
+      <main className="flex-1 p-4 flex flex-col justify-start text-left fixed left-13.75 w-9/10 sm:static overflow-hidden">
         <Outlet />
       </main>
     </div>

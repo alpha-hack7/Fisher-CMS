@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { upload_video } from "../../api/video";
 import Loader from "../../components/loader";
-import "./css/upload_video.css";
 import {
   Category,
   New_Category,
@@ -62,10 +61,10 @@ const Upload_video = () => {
   return (
     <article>
       <nav>Dashboard &gt; Videos &gt; Upload Video &gt;</nav>
-      <div className="upload-video">
-        <form>
+      <div className="mt-4 mx-auto p-5 border-[#ccc] rounded-[5px] bg-secondary">
+        <form className="flex flex-col gap-4 relative">
           <Category setCategory={setCategory} />
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="title">Title:</label>
             <input
               type="text"
@@ -75,7 +74,7 @@ const Upload_video = () => {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="short_text">Short Text (About):</label>
             <textarea
               name="short_text"
@@ -86,7 +85,7 @@ const Upload_video = () => {
               onChange={handleChange}
             ></textarea>
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="video-thumbnail">Video Thumbnail:</label>
             <input
               type="file"
@@ -96,9 +95,10 @@ const Upload_video = () => {
               onChange={(e) => setVideoThumbnail(e.target.files[0])}
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="import-video">Import Video</label>
             <input
+              className="bg-primary w-fit rounded-xl"
               type="file"
               name="import-video"
               accept="video/*"
@@ -108,6 +108,7 @@ const Upload_video = () => {
           </div>
           <New_Category />
           <button
+            className="w-fit"
             type="button"
             onClick={() => {
               setOpen(true);
@@ -117,6 +118,7 @@ const Upload_video = () => {
             Upload Video
           </button>
           <button
+            className="w-fit"
             type="button"
             onClick={() => {
               setStatus("draft");

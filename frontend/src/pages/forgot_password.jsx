@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { forgot_password } from "../api/forgot_password";
 import Loader from "./../components/loader";
-import "./css/forgot-password.css";
 const Forgot_password = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -23,10 +22,13 @@ const Forgot_password = () => {
   };
   if (loading) return <Loader />;
   return (
-    <div className="forgot-password-page">
+    <div>
       <h1>Forgot Password</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form
+        onSubmit={handleSubmit}
+        className="w-75 border border-border-color rounded-2xl p-8 mx-auto flex flex-col gap-4"
+      >
+        <div className="flex flex-col gap-4">
           <label htmlFor="email">Enter your email:</label>
           <input
             type="email"
@@ -36,7 +38,7 @@ const Forgot_password = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="buttons">
+        <div className="flex flex-row justify-between">
           <button type="button" onClick={() => navigate("/login")}>
             Go Back
           </button>

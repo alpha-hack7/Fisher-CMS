@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import Loader from "../../components/loader";
 import { Videos_Section } from "../../components/video";
 import { useVideos } from "../../hooks/useVideos";
-import "./css/content.css";
 
 const Videos_page = () => {
   const navigate = useNavigate();
@@ -15,13 +14,13 @@ const Videos_page = () => {
     }
   }, [error]);
   return (
-    <div className="videos-page">
+    <div>
       <nav>Dashboard &gt; Videos &gt;</nav>
-      <h2>Videos</h2>
+      <h2 className="m-4">Videos</h2>
       {isLoading ? <Loader /> : <Videos_Section videos={videos} />}
       <button
         onClick={() => navigate("upload-video")}
-        className="upload-video-btn"
+        className="float-right mr-12"
       >
         Upload a new video
       </button>

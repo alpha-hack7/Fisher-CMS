@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { LeftArrow, RightArrow } from "../../components/nav_arrow.jsx";
 import { cars } from "../../data/cars.js";
-import "./css/videos.css";
 
 const Car_Picture = ({ car_type, name, description }) => {
   return (
-    <div className="video-item">
-      <div className="video-thumbnail">
-        <img src={car_type} alt="Car Image" />
+    <div className="group/car-item w-[80dvw] min-w-[80dvw] h-75 relative rounded-2xl bg-secondary sm:h-[80dvh]">
+      <div className="w-full h-full bg-cover bg-center">
+        <img
+          className="w-full h-full object-contain object-top rounded-2xl sm:object-cover sm:object-center"
+          src={car_type}
+          alt="Car Image"
+        />
       </div>
-      <h3>{name}</h3>
-      <p>{description}</p>
+      <h3 className="group-hover/car-item:bg-transparent group-hover/car-item:-translate-y-15 absolute bottom-2.5 left-2.5 bg-[#333]">
+        {name}
+      </h3>
+      <p className="group-hover/car-item:opacity-100 group-hover/car-item:text-left group-hover/car-item:translate-y-0 absolute bottom-2.5 left-2.5 opacity-0 translate-y-3.75 transition-all duration-300 ease-in-out">
+        {description}
+      </p>
     </div>
   );
 };
@@ -25,13 +32,13 @@ const Videos = () => {
     setOffset((prev) => Math.min(prev + 1, totalSlides - 1));
   };
   return (
-    <section className="videos-section" id="videos">
-      <h2>Cars</h2>
-      <div className="videos-container">
-        <div id="co">
+    <section className="mb-4" id="videos">
+      <h2 className="mb-4 font-semibold text-3xl italic text-left">Cars</h2>
+      <div className="relative w-[80dvw] mx-auto">
+        <div id="co" className="overflow-hidden">
           <LeftArrow onClick={handleLeftClick} />
           <div
-            className="container"
+            className="flex scrollbar-none"
             style={{ transform: `translateX(-${offset * 80}vw)` }}
           >
             {cars.map((car, index) => (

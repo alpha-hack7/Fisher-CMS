@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../api/login";
 import Loader from "./../components/loader";
-import "./css/login.css";
+
 const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ username: "", password: "" });
@@ -32,8 +32,11 @@ const Login = () => {
     <>
       <div className="login-container">
         <h1>Login Page</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
+        <form
+          onSubmit={handleSubmit}
+          className="w-75 mx-auto p-12 rounded-2xl border border-[#999] flex flex-col gap-4 text-left"
+        >
+          <div className="flex flex-col w-full">
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -44,9 +47,9 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div>
+          <div className="flex flex-col w-full">
             <label htmlFor="password">Password:</label>
-            <div className="password">
+            <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -55,7 +58,7 @@ const Login = () => {
                 value={user.password}
                 onChange={handleInputChange}
               />
-              <span className="show-password">
+              <span className="absolute right-2.5 top-25/100">
                 {showPassword ? (
                   <Eye onClick={() => setShowPassword(false)} />
                 ) : (
@@ -64,10 +67,10 @@ const Login = () => {
               </span>
             </div>
           </div>
-          <a className="forgot-password" href="/forgot-password">
+          <a className="text-right" href="/forgot-password">
             Forgot Password
           </a>
-          <div className="login-buttons">
+          <div className="flex justify-between items-center gap-4">
             <button
               type="button"
               onClick={() => {

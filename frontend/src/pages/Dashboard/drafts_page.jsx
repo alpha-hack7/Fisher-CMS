@@ -5,7 +5,6 @@ import { Posts_Section } from "../../components/post";
 import { Videos_Section } from "../../components/video";
 import { useDraftPosts } from "../../hooks/usePosts";
 import { useDraftVideos } from "../../hooks/useVideos";
-import "./css/content.css";
 
 const Drafts_page = () => {
   const videoQuery = useDraftVideos();
@@ -22,13 +21,14 @@ const Drafts_page = () => {
   }, [videoQuery.error, postQuery.error]);
   if (videoQuery.isLoading || postQuery.isLoading) return <Loader />;
   return (
-    <div className="drafts-page">
+    <div className="flex flex-col gap-4">
       <nav>{nav.join(" > ")}</nav>
       <h3>These are the posts and videos you have made but not uploaded.</h3>
       <p>You can think of them as work in progress.</p>
       <main>
         <div className="draft-selection">
           <span
+            className="p-2 mr-4 cursor-pointer text-pink-500 hover:text-pink-800 hover:border-b-2 hover:border-pink-800"
             onClick={() => {
               setStatus("posts");
               setNav(["Dashboard", "Drafts", "Posts"]);
@@ -37,6 +37,7 @@ const Drafts_page = () => {
             Posts
           </span>
           <span
+            className="p-2 mr-4 cursor-pointer text-pink-500 hover:text-pink-800 hover:border-b-2 hover:border-pink-800"
             onClick={() => {
               setStatus("videos");
               setNav(["Dashboard", "Drafts", "Videos"]);
